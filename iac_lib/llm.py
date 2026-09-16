@@ -10,12 +10,28 @@ import requests
 BASE = "https://openrouter.ai/api/v1"
 
 
+def load_key():
+    """Resolve the OpenRouter key: env var first, then a .env file in any parent folder."""
+    key = os.environ.get("OPENROUTER_API_KEY", "").strip()
+    if key:
+        return key
+    here = os.path.dirname(os.path.abspath(__file__))
+    for cand in [os.path.join(here, "..", "..", ".env"), os.path.join(here, "..", ".env"),
+                 os.path.join(here, ".env"), ".env"]:
+        p = os.path.normpath(cand)
+        if os.path.exists(p):
+            with open(p, encoding="utf-8") as f:
+                for line in f:
+                    if line.startswith("OPENROUTER_API_KEY="):
+                        return line.strip().split("=", 1)[1]
+    return None
+
+
 def _load_key():
-    with open(r"C:\Users\USER\Desktop\Article Final\.env", encoding="utf-8") as f:
-        for line in f:
-            if line.startswith("OPENROUTER_API_KEY="):
-                return line.strip().split("=", 1)[1]
-    raise RuntimeError("no key")
+    key = load_key()
+    if not key:
+        raise RuntimeError("no OPENROUTER_API_KEY found (set the env var or a .env file)")
+    return key
 
 
 class LLMClient:

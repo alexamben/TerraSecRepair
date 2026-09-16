@@ -3,11 +3,17 @@ name: TerraSecRepair audit
 # The merge gate from the paper: audit every changed Terraform file with the
 # hybrid pipeline (Checkov 3.3.17 -> BM25 -> LLM -> validation re-scan) and
 # block the merge while unvalidated critical/high findings remain.
+#
+# Runs on pull requests and on pushes to any non-main branch. Without the
+# OPENROUTER_API_KEY secret it degrades to a SAST-only advisory report.
 
 on:
   pull_request:
     paths:
       - "**/*.tf"
+  push:
+    branches-ignore:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -17,7 +23,7 @@ jobs:
       contents: read
       pull-requests: write
     steps:
-      - name: Check out PR head
+      - name: Check out head
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -30,16 +36,19 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Collect changed Terraform files
+      - name: Collect Terraform files to audit
         id: files
         run: |
-          BASE="${{ github.base_ref }}"
-          git fetch origin "$BASE" --quiet
-          CHANGED=$(git diff --name-only --diff-filter=ACMRT "origin/$BASE"...HEAD \
-                    | grep '\.tf$' || true)
-          echo "files=$CHANGED" >> "$GITHUB_OUTPUT"
-          echo "Changed .tf files:"
-          echo "$CHANGED"
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE="origin/${{ github.base_ref }}"
+            git fetch origin "$BASE" --quiet
+            FILES=$(git diff --name-only --diff-filter=ACMRT "$BASE"...HEAD | grep '\.tf$' || true)
+          else
+            FILES=$(git ls-files '*.tf')
+          fi
+          echo "files=$FILES" >> "$GITHUB_OUTPUT"
+          echo "Terraform files to audit:"
+          echo "$FILES"
 
       - name: Run TerraSecRepair audit
         env:
@@ -48,7 +57,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           if [ -z "${{ steps.files.outputs.files }}" ]; then
-            echo "No Terraform files changed - nothing to audit."
+            echo "No Terraform files to audit."
             exit 0
           fi
           python ci_audit.py \

@@ -17,7 +17,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
-from iac_lib.llm import LLMClient
+from iac_lib.llm import LLMClient, load_key
 from iac_lib.prompts import SYSTEM, build_prompt
 from iac_lib.rag import CardRetriever
 from iac_lib.sast import scan_batch, summarize_code
@@ -76,19 +76,27 @@ def main():
 
     slug, no_reason = MODELS[args.model]
     gate = SEV_ORDER[args.fail_on.upper()] if args.fail_on != "none" else 99
+    api_key = load_key()
+    full_mode = bool(api_key)
 
     with open(os.path.join(ASSETS, "kb_cards.json"), encoding="utf-8") as f:
         kb = json.load(f)
 
-    client = LLMClient(CACHE)
+    client = LLMClient(CACHE) if full_mode else None
     retriever = CardRetriever(os.path.join(ASSETS, "kb_cards.json"), weights=(1.0, 0.0, 0.0))
-
-    scan = scan_batch({os.path.abspath(p): open(p, encoding="utf-8").read()
-                       for p in args.files}, workers=min(4, len(args.files)))
 
     md = ["## 🔒 TerraSecRepair audit", ""]
     gate_failures = []
     total_targets = total_eliminated = 0
+
+    if not full_mode:
+        md.append("ℹ️ **SAST-only advisory run** (no OPENROUTER_API_KEY secret set): "
+                  "scanner findings are reported without LLM triage or repair, and the "
+                  "merge gate is advisory. Add the secret to enable full remediation.")
+        md.append("")
+
+    scan = scan_batch({os.path.abspath(p): open(p, encoding="utf-8").read()
+                       for p in args.files}, workers=min(4, len(args.files)))
 
     for path in args.files:
         code = open(path, encoding="utf-8").read()
@@ -106,6 +114,12 @@ def main():
         if args.mode in ("rag", "hybrid"):
             cards = retriever.retrieve(summarize_code(code),
                                        sast_f if args.mode == "hybrid" else None, top_k=5)
+        if not full_mode:
+            for c in sorted(targets):
+                sev = (kb.get(c, {}) or {}).get("severity", "MEDIUM").upper()
+                md.append(f"  - ⚠ `{c}` ({sev}) — SAST-only advisory: no LLM repair")
+            md.append("")
+            continue
         user = build_prompt(args.mode, code, sast_f if args.mode in ("sast", "hybrid") else None, cards)
         rec = client.chat(slug, [{"role": "system", "content": SYSTEM},
                                  {"role": "user", "content": user}],
