@@ -1,0 +1,6 @@
+checkov==3.3.17
+python-hcl2>=4.3
+rank-bm25>=0.2.2
+scikit-learn>=1.3
+requests>=2.31
+streamlit>=1.30

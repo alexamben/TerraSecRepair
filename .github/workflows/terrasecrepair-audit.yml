@@ -1,0 +1,58 @@
+name: TerraSecRepair audit
+
+# The merge gate from the paper: audit every changed Terraform file with the
+# hybrid pipeline (Checkov 3.3.17 -> BM25 -> LLM -> validation re-scan) and
+# block the merge while unvalidated critical/high findings remain.
+
+on:
+  pull_request:
+    paths:
+      - "**/*.tf"
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Check out PR head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Collect changed Terraform files
+        id: files
+        run: |
+          BASE="${{ github.base_ref }}"
+          git fetch origin "$BASE" --quiet
+          CHANGED=$(git diff --name-only --diff-filter=ACMRT "origin/$BASE"...HEAD \
+                    | grep '\.tf$' || true)
+          echo "files=$CHANGED" >> "$GITHUB_OUTPUT"
+          echo "Changed .tf files:"
+          echo "$CHANGED"
+
+      - name: Run TerraSecRepair audit
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -z "${{ steps.files.outputs.files }}" ]; then
+            echo "No Terraform files changed - nothing to audit."
+            exit 0
+          fi
+          python ci_audit.py \
+            --files ${{ steps.files.outputs.files }} \
+            --model "${TERRASECREPAIR_MODEL:-qwen3.8-flash}" \
+            --mode hybrid \
+            --fail-on high

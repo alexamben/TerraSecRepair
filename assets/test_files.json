@@ -1,0 +1,4490 @@
+[
+ {
+  "file_id": "947e663d7c3ff35a",
+  "code": "resource \"aws_s3_bucket\" \"data\" {\n  bucket        = \"${local.resource_prefix.value}-data\"\n  force_destroy = true\n  tags = merge({\n    Name        = \"${local.resource_prefix.value}-data\"\n    Environment = local.resource_prefix.value\n    }, {\n  })\n}",
+  "code_hash": "00bba3047de372c5bb574727650c8724",
+  "provider": "aws",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 9,
+  "findings": [
+   {
+    "check_id": "CKV2_AWS_62",
+    "finding_label": "Ensure S3 buckets should have event notifications enabled",
+    "description": "Ensure S3 buckets should have event notifications enabled",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV2_AWS_62",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_6",
+    "finding_label": "Ensure that S3 bucket has a Public Access block",
+    "description": "Ensure that S3 bucket has a Public Access block",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV2_AWS_6",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_21",
+    "finding_label": "Ensure all data stored in the S3 bucket have versioning enabled",
+    "description": "Ensure all data stored in the S3 bucket have versioning enabled",
+    "severity": "HIGH",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV_AWS_21",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_61",
+    "finding_label": "Ensure that an S3 bucket has a lifecycle configuration",
+    "description": "Ensure that an S3 bucket has a lifecycle configuration",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV2_AWS_61",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_145",
+    "finding_label": "Ensure that S3 buckets are encrypted with KMS by default",
+    "description": "Ensure that S3 buckets are encrypted with KMS by default",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_145",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_144",
+    "finding_label": "Ensure that S3 bucket has cross-region replication enabled",
+    "description": "Ensure that S3 bucket has cross-region replication enabled",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV_AWS_144",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_18",
+    "finding_label": "Ensure the S3 bucket has access logging enabled",
+    "description": "Ensure the S3 bucket has access logging enabled",
+    "severity": "HIGH",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_AWS_18",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "HIGH"
+ },
+ {
+  "file_id": "34943d4d0e2b0bbc",
+  "code": "resource \"aws_s3_bucket\" \"changeme_aws_s3_bucket_backend_simple\" {\n  force_destroy = true\n  bucket        = \"changeme-${random_id.changeme_backends_s3_bucket_name.hex}\"\n}",
+  "code_hash": "d3b138b764625bab6f653d2f58d022b1",
+  "provider": "aws",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 4,
+  "findings": [
+   {
+    "check_id": "CKV2_AWS_62",
+    "finding_label": "Ensure S3 buckets should have event notifications enabled",
+    "description": "Ensure S3 buckets should have event notifications enabled",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV2_AWS_62",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_6",
+    "finding_label": "Ensure that S3 bucket has a Public Access block",
+    "description": "Ensure that S3 bucket has a Public Access block",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV2_AWS_6",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_21",
+    "finding_label": "Ensure all data stored in the S3 bucket have versioning enabled",
+    "description": "Ensure all data stored in the S3 bucket have versioning enabled",
+    "severity": "HIGH",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV_AWS_21",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_61",
+    "finding_label": "Ensure that an S3 bucket has a lifecycle configuration",
+    "description": "Ensure that an S3 bucket has a lifecycle configuration",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV2_AWS_61",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_144",
+    "finding_label": "Ensure that S3 bucket has cross-region replication enabled",
+    "description": "Ensure that S3 bucket has cross-region replication enabled",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV_AWS_144",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_145",
+    "finding_label": "Ensure that S3 buckets are encrypted with KMS by default",
+    "description": "Ensure that S3 buckets are encrypted with KMS by default",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_145",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_18",
+    "finding_label": "Ensure the S3 bucket has access logging enabled",
+    "description": "Ensure the S3 bucket has access logging enabled",
+    "severity": "HIGH",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_AWS_18",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "HIGH"
+ },
+ {
+  "file_id": "ed96ef60669d8988",
+  "code": "resource \"aws_s3_bucket\" \"b\" {\n  bucket = \"my-tf-test-bucket-ggff\"\n  acl    = \"private\"\n}",
+  "code_hash": "4f088ca8394f8c7aabecfd3b081a6db2",
+  "provider": "aws",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 4,
+  "findings": [
+   {
+    "check_id": "CKV2_AWS_62",
+    "finding_label": "Ensure S3 buckets should have event notifications enabled",
+    "description": "Ensure S3 buckets should have event notifications enabled",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV2_AWS_62",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_6",
+    "finding_label": "Ensure that S3 bucket has a Public Access block",
+    "description": "Ensure that S3 bucket has a Public Access block",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV2_AWS_6",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_21",
+    "finding_label": "Ensure all data stored in the S3 bucket have versioning enabled",
+    "description": "Ensure all data stored in the S3 bucket have versioning enabled",
+    "severity": "HIGH",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV_AWS_21",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_61",
+    "finding_label": "Ensure that an S3 bucket has a lifecycle configuration",
+    "description": "Ensure that an S3 bucket has a lifecycle configuration",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV2_AWS_61",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_145",
+    "finding_label": "Ensure that S3 buckets are encrypted with KMS by default",
+    "description": "Ensure that S3 buckets are encrypted with KMS by default",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_145",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_144",
+    "finding_label": "Ensure that S3 bucket has cross-region replication enabled",
+    "description": "Ensure that S3 bucket has cross-region replication enabled",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV_AWS_144",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_18",
+    "finding_label": "Ensure the S3 bucket has access logging enabled",
+    "description": "Ensure the S3 bucket has access logging enabled",
+    "severity": "HIGH",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_AWS_18",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "HIGH"
+ },
+ {
+  "file_id": "7d162353c1432f79",
+  "code": "resource \"aws_s3_bucket\" \"bucket_2\" {\n  bucket = \"roger-bucket-2\"\n  acl    = var.bucket_acl\n  server_side_encryption_configuration {\n    rule {\n      apply_server_side_encryption_by_default {\n        kms_master_key_id = aws_kms_key.my_key.arn\n        sse_algorithm     = \"aws:kms\"\n      }\n    }\n  }\n}",
+  "code_hash": "06e4ebb8b40c6b1f09cb91e230ecf364",
+  "provider": "aws",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 12,
+  "findings": [
+   {
+    "check_id": "CKV2_AWS_62",
+    "finding_label": "Ensure S3 buckets should have event notifications enabled",
+    "description": "Ensure S3 buckets should have event notifications enabled",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV2_AWS_62",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_6",
+    "finding_label": "Ensure that S3 bucket has a Public Access block",
+    "description": "Ensure that S3 bucket has a Public Access block",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV2_AWS_6",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_21",
+    "finding_label": "Ensure all data stored in the S3 bucket have versioning enabled",
+    "description": "Ensure all data stored in the S3 bucket have versioning enabled",
+    "severity": "HIGH",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV_AWS_21",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_144",
+    "finding_label": "Ensure that S3 bucket has cross-region replication enabled",
+    "description": "Ensure that S3 bucket has cross-region replication enabled",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV_AWS_144",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_61",
+    "finding_label": "Ensure that an S3 bucket has a lifecycle configuration",
+    "description": "Ensure that an S3 bucket has a lifecycle configuration",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV2_AWS_61",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_18",
+    "finding_label": "Ensure the S3 bucket has access logging enabled",
+    "description": "Ensure the S3 bucket has access logging enabled",
+    "severity": "HIGH",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_AWS_18",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "HIGH"
+ },
+ {
+  "file_id": "4a816f606dee8a88",
+  "code": "resource \"aws_instance\" \"web\" {\n  ami                    = \"${var.ami}\"\n  instance_type          = \"t2.micro\"\n  subnet_id              = \"${aws_subnet.public-subnet.id}\"\n  vpc_security_group_ids = [\"${aws_security_group.sgweb.id}\"]\n}",
+  "code_hash": "067fc7d31d83f6a9cc9ebbb2050cbd7d",
+  "provider": "aws",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 6,
+  "findings": [
+   {
+    "check_id": "AVD-AWS-0131",
+    "finding_label": "Root block device is not encrypted.",
+    "description": "The block device could be compromised and read from",
+    "severity": "HIGH",
+    "category": "encryption-tls",
+    "remediation_hint": "Turn on encryption for all block devices",
+    "reproduced": true
+   },
+   {
+    "check_id": "AVD-AWS-0028",
+    "finding_label": "Instance does not require IMDS access to require a token",
+    "description": "Instance metadata service can be interacted with freely",
+    "severity": "HIGH",
+    "category": "secrets",
+    "remediation_hint": "Enable HTTP token requirement for IMDS",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_8",
+    "finding_label": "Ensure all data stored in the Launch configuration or instance Elastic Blocks Store is securely encrypted",
+    "description": "Ensure all data stored in the Launch configuration or instance Elastic Blocks Store is securely encrypted",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_8",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_126",
+    "finding_label": "Ensure that detailed monitoring is enabled for EC2 instances",
+    "description": "Ensure that detailed monitoring is enabled for EC2 instances",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_AWS_126",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_135",
+    "finding_label": "Ensure that EC2 is EBS optimized",
+    "description": "Ensure that EC2 is EBS optimized",
+    "severity": "MEDIUM",
+    "category": "storage-data",
+    "remediation_hint": "Fix required for CKV_AWS_135",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_79",
+    "finding_label": "Ensure Instance Metadata Service Version 1 is not enabled",
+    "description": "Ensure Instance Metadata Service Version 1 is not enabled",
+    "severity": "MEDIUM",
+    "category": "metadata-service",
+    "remediation_hint": "Fix required for CKV_AWS_79",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_41",
+    "finding_label": "Ensure an IAM role is attached to EC2 instance",
+    "description": "Ensure an IAM role is attached to EC2 instance",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV2_AWS_41",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "HIGH"
+ },
+ {
+  "file_id": "f9bed53cff2aaa0c",
+  "code": "resource \"aws_s3_bucket\" \"logs\" {\n  bucket = \"${local.resource_prefix.value}-logs\"\n  acl    = \"log-delivery-write\"\n  versioning {\n    enabled = true\n  }\n  server_side_encryption_configuration {\n    rule {\n      apply_server_side_encryption_by_default {\n        sse_algorithm     = \"aws:kms\"\n        kms_master_key_id = \"${aws_kms_key.logs_key.arn}\"\n      }\n    }\n  }\n  force_destroy = true\n  tags = merge({\n    Name        = \"${local.resource_prefix.value}-logs\"\n    Environment = local.resource_prefix.value\n    }, {\n  })\n}",
+  "code_hash": "b321d912b835734de5660399eacc5baf",
+  "provider": "aws",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 21,
+  "findings": [
+   {
+    "check_id": "CKV2_AWS_62",
+    "finding_label": "Ensure S3 buckets should have event notifications enabled",
+    "description": "Ensure S3 buckets should have event notifications enabled",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV2_AWS_62",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_6",
+    "finding_label": "Ensure that S3 bucket has a Public Access block",
+    "description": "Ensure that S3 bucket has a Public Access block",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV2_AWS_6",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_61",
+    "finding_label": "Ensure that an S3 bucket has a lifecycle configuration",
+    "description": "Ensure that an S3 bucket has a lifecycle configuration",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV2_AWS_61",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_144",
+    "finding_label": "Ensure that S3 bucket has cross-region replication enabled",
+    "description": "Ensure that S3 bucket has cross-region replication enabled",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV_AWS_144",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_18",
+    "finding_label": "Ensure the S3 bucket has access logging enabled",
+    "description": "Ensure the S3 bucket has access logging enabled",
+    "severity": "HIGH",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_AWS_18",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "HIGH"
+ },
+ {
+  "file_id": "7286b1bb1933b63e",
+  "code": "resource \"aws_launch_configuration\" \"levelup-launchconfig\" {\n  name_prefix     = \"levelup-launchconfig\"\n  image_id        = lookup(var.AMIS, var.AWS_REGION)\n  instance_type   = \"t2.micro\"\n  key_name        = aws_key_pair.levelup_key.key_name\n}",
+  "code_hash": "1573f21423a7905373884a225b705e89",
+  "provider": "aws",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 6,
+  "findings": [
+   {
+    "check_id": "AVD-AWS-0008",
+    "finding_label": "Root block device is not encrypted.",
+    "description": "The block device could be compromised and read from",
+    "severity": "HIGH",
+    "category": "encryption-tls",
+    "remediation_hint": "Turn on encryption for all block devices",
+    "reproduced": true
+   },
+   {
+    "check_id": "AVD-AWS-0130",
+    "finding_label": "Launch configuration does not require IMDS access to require a token",
+    "description": "Instance metadata service can be interacted with freely",
+    "severity": "HIGH",
+    "category": "secrets",
+    "remediation_hint": "Enable HTTP token requirement for IMDS",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_8",
+    "finding_label": "Ensure all data stored in the Launch configuration or instance Elastic Blocks Store is securely encrypted",
+    "description": "Ensure all data stored in the Launch configuration or instance Elastic Blocks Store is securely encrypted",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_8",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_79",
+    "finding_label": "Ensure Instance Metadata Service Version 1 is not enabled",
+    "description": "Ensure Instance Metadata Service Version 1 is not enabled",
+    "severity": "MEDIUM",
+    "category": "metadata-service",
+    "remediation_hint": "Fix required for CKV_AWS_79",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "HIGH"
+ },
+ {
+  "file_id": "ddc750bd4172fbad",
+  "code": "resource \"aws_s3_bucket\" \"financials\" {\n  bucket        = \"${local.resource_prefix.value}-financials\"\n  acl           = \"private\"\n  force_destroy = true\n  tags = merge({\n    Name        = \"${local.resource_prefix.value}-financials\"\n    Environment = local.resource_prefix.value\n    }, {\n  })\n}",
+  "code_hash": "fbd1942b46c6f5f5cfd821176b10b966",
+  "provider": "aws",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 10,
+  "findings": [
+   {
+    "check_id": "CKV2_AWS_62",
+    "finding_label": "Ensure S3 buckets should have event notifications enabled",
+    "description": "Ensure S3 buckets should have event notifications enabled",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV2_AWS_62",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_6",
+    "finding_label": "Ensure that S3 bucket has a Public Access block",
+    "description": "Ensure that S3 bucket has a Public Access block",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV2_AWS_6",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_21",
+    "finding_label": "Ensure all data stored in the S3 bucket have versioning enabled",
+    "description": "Ensure all data stored in the S3 bucket have versioning enabled",
+    "severity": "HIGH",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV_AWS_21",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_61",
+    "finding_label": "Ensure that an S3 bucket has a lifecycle configuration",
+    "description": "Ensure that an S3 bucket has a lifecycle configuration",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV2_AWS_61",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_145",
+    "finding_label": "Ensure that S3 buckets are encrypted with KMS by default",
+    "description": "Ensure that S3 buckets are encrypted with KMS by default",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_145",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_144",
+    "finding_label": "Ensure that S3 bucket has cross-region replication enabled",
+    "description": "Ensure that S3 bucket has cross-region replication enabled",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV_AWS_144",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_18",
+    "finding_label": "Ensure the S3 bucket has access logging enabled",
+    "description": "Ensure the S3 bucket has access logging enabled",
+    "severity": "HIGH",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_AWS_18",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "HIGH"
+ },
+ {
+  "file_id": "0b6278df3421c45d",
+  "code": "resource \"aws_s3_bucket\" \"cloudtrail_logs\" {\n  bucket        = \"smart-city-parking-management-system-s3-cloudtrail-${random_string.cloudtrail_suffix.result}\"\n  force_destroy = true\n}",
+  "code_hash": "4c6089d3b57a9f6104cb5e34c4cd1431",
+  "provider": "aws",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 4,
+  "findings": [
+   {
+    "check_id": "CKV2_AWS_62",
+    "finding_label": "Ensure S3 buckets should have event notifications enabled",
+    "description": "Ensure S3 buckets should have event notifications enabled",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV2_AWS_62",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_6",
+    "finding_label": "Ensure that S3 bucket has a Public Access block",
+    "description": "Ensure that S3 bucket has a Public Access block",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV2_AWS_6",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_21",
+    "finding_label": "Ensure all data stored in the S3 bucket have versioning enabled",
+    "description": "Ensure all data stored in the S3 bucket have versioning enabled",
+    "severity": "HIGH",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV_AWS_21",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_61",
+    "finding_label": "Ensure that an S3 bucket has a lifecycle configuration",
+    "description": "Ensure that an S3 bucket has a lifecycle configuration",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV2_AWS_61",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_145",
+    "finding_label": "Ensure that S3 buckets are encrypted with KMS by default",
+    "description": "Ensure that S3 buckets are encrypted with KMS by default",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_145",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_18",
+    "finding_label": "Ensure the S3 bucket has access logging enabled",
+    "description": "Ensure the S3 bucket has access logging enabled",
+    "severity": "HIGH",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_AWS_18",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_144",
+    "finding_label": "Ensure that S3 bucket has cross-region replication enabled",
+    "description": "Ensure that S3 bucket has cross-region replication enabled",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV_AWS_144",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "HIGH"
+ },
+ {
+  "file_id": "9ae7c360d95f083e",
+  "code": "resource \"aws_s3_bucket\" \"admin_dashboard\" {\n  bucket = \"smart-city-parking-management-system-s3-admin-dashboard-${random_string.bucket_suffix.result}\"\n}",
+  "code_hash": "bbbd45e3cde46d395bb6086295025a40",
+  "provider": "aws",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 3,
+  "findings": [
+   {
+    "check_id": "CKV2_AWS_62",
+    "finding_label": "Ensure S3 buckets should have event notifications enabled",
+    "description": "Ensure S3 buckets should have event notifications enabled",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV2_AWS_62",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_6",
+    "finding_label": "Ensure that S3 bucket has a Public Access block",
+    "description": "Ensure that S3 bucket has a Public Access block",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV2_AWS_6",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_61",
+    "finding_label": "Ensure that an S3 bucket has a lifecycle configuration",
+    "description": "Ensure that an S3 bucket has a lifecycle configuration",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV2_AWS_61",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_145",
+    "finding_label": "Ensure that S3 buckets are encrypted with KMS by default",
+    "description": "Ensure that S3 buckets are encrypted with KMS by default",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_145",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_18",
+    "finding_label": "Ensure the S3 bucket has access logging enabled",
+    "description": "Ensure the S3 bucket has access logging enabled",
+    "severity": "HIGH",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_AWS_18",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_144",
+    "finding_label": "Ensure that S3 bucket has cross-region replication enabled",
+    "description": "Ensure that S3 bucket has cross-region replication enabled",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV_AWS_144",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "HIGH"
+ },
+ {
+  "file_id": "9a26c11e8a7912fa",
+  "code": "resource \"aws_s3_bucket\" \"cloudtrail_logs\" {\n  bucket = \"fleet-management-gps-tracking-system-cloudtrail-${random_string.bucket_suffix.result}\"\n}",
+  "code_hash": "87bb9e5a6756e34856e0619031ee6223",
+  "provider": "aws",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 3,
+  "findings": [
+   {
+    "check_id": "CKV2_AWS_62",
+    "finding_label": "Ensure S3 buckets should have event notifications enabled",
+    "description": "Ensure S3 buckets should have event notifications enabled",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV2_AWS_62",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_6",
+    "finding_label": "Ensure that S3 bucket has a Public Access block",
+    "description": "Ensure that S3 bucket has a Public Access block",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV2_AWS_6",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_21",
+    "finding_label": "Ensure all data stored in the S3 bucket have versioning enabled",
+    "description": "Ensure all data stored in the S3 bucket have versioning enabled",
+    "severity": "HIGH",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV_AWS_21",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_61",
+    "finding_label": "Ensure that an S3 bucket has a lifecycle configuration",
+    "description": "Ensure that an S3 bucket has a lifecycle configuration",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV2_AWS_61",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_145",
+    "finding_label": "Ensure that S3 buckets are encrypted with KMS by default",
+    "description": "Ensure that S3 buckets are encrypted with KMS by default",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_145",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_18",
+    "finding_label": "Ensure the S3 bucket has access logging enabled",
+    "description": "Ensure the S3 bucket has access logging enabled",
+    "severity": "HIGH",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_AWS_18",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_144",
+    "finding_label": "Ensure that S3 bucket has cross-region replication enabled",
+    "description": "Ensure that S3 bucket has cross-region replication enabled",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV_AWS_144",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "HIGH"
+ },
+ {
+  "file_id": "130e74168da88b36",
+  "code": "resource \"aws_db_instance\" \"levelup-rds\" {\n  identifier = \"${var.ENVIRONMENT}-levelup-rds\"\n  allocated_storage = var.LEVELUP_RDS_ALLOCATED_STORAGE\n  storage_type = \"gp2\"\n  engine = var.LEVELUP_RDS_ENGINE\n  engine_version = var.LEVELUP_RDS_ENGINE_VERSION\n  instance_class = var.DB_INSTANCE_CLASS\n  backup_retention_period = var.BACKUP_RETENTION_PERIOD\n  publicly_accessible = var.PUBLICLY_ACCESSIBLE\n  username = var.LEVELUP_RDS_USERNAME\n  password = var.LEVELUP_RDS_PASSWORD\n  vpc_security_group_ids = [aws_security_group.levelup-rds-sg.id]\n  db_subnet_group_name = aws_db_subnet_group.levelup-rds-subnet-group.name\n  multi_az = \"false\"\n}",
+  "code_hash": "fabab95325d64de5227e5010b16ade79",
+  "provider": "aws",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 15,
+  "findings": [
+   {
+    "check_id": "AVD-AWS-0177",
+    "finding_label": "Instance does not have Deletion Protection enabled",
+    "description": null,
+    "severity": "MEDIUM",
+    "category": "database",
+    "remediation_hint": "Modify the RDS instances to enable deletion protection.",
+    "reproduced": true
+   },
+   {
+    "check_id": "AVD-AWS-0176",
+    "finding_label": "Instance does not have IAM Authentication enabled",
+    "description": null,
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Modify the PostgreSQL and MySQL type RDS instances to enable IAM database authentication.",
+    "reproduced": false
+   },
+   {
+    "check_id": "AVD-AWS-0133",
+    "finding_label": "Instance does not have performance insights enabled.",
+    "description": "Without adequate monitoring, performance related issues may go unreported and potentially lead to compromise.",
+    "severity": "LOW",
+    "category": "network-exposure",
+    "remediation_hint": "Enable performance insights",
+    "reproduced": true
+   },
+   {
+    "check_id": "AVD-AWS-0080",
+    "finding_label": "Instance does not have storage encryption enabled.",
+    "description": "Data can be read from RDS instances if compromised",
+    "severity": "HIGH",
+    "category": "encryption-tls",
+    "remediation_hint": "Enable encryption for RDS instances",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_129",
+    "finding_label": "Ensure that respective logs of Amazon Relational Database Service (Amazon RDS) are enabled",
+    "description": "Ensure that respective logs of Amazon Relational Database Service (Amazon RDS) are enabled",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_AWS_129",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_293",
+    "finding_label": "Ensure that AWS database instances have deletion protection enabled",
+    "description": "Ensure that AWS database instances have deletion protection enabled",
+    "severity": "MEDIUM",
+    "category": "database",
+    "remediation_hint": "Fix required for CKV_AWS_293",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_16",
+    "finding_label": "Ensure all data stored in the RDS is securely encrypted at rest",
+    "description": "Ensure all data stored in the RDS is securely encrypted at rest",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_16",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_118",
+    "finding_label": "Ensure that enhanced monitoring is enabled for Amazon RDS instances",
+    "description": "Ensure that enhanced monitoring is enabled for Amazon RDS instances",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_AWS_118",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_353",
+    "finding_label": "Ensure that RDS instances have performance insights enabled",
+    "description": "Ensure that RDS instances have performance insights enabled",
+    "severity": "MEDIUM",
+    "category": "database",
+    "remediation_hint": "Fix required for CKV_AWS_353",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_226",
+    "finding_label": "Ensure DB instance gets all minor upgrades automatically",
+    "description": "Ensure DB instance gets all minor upgrades automatically",
+    "severity": "MEDIUM",
+    "category": "database",
+    "remediation_hint": "Fix required for CKV_AWS_226",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_17",
+    "finding_label": "Ensure all data stored in RDS is not publicly accessible",
+    "description": "Ensure all data stored in RDS is not publicly accessible",
+    "severity": "MEDIUM",
+    "category": "database",
+    "remediation_hint": "Fix required for CKV_AWS_17",
+    "reproduced": false
+   },
+   {
+    "check_id": "CKV_AWS_157",
+    "finding_label": "Ensure that RDS instances have Multi-AZ enabled",
+    "description": "Ensure that RDS instances have Multi-AZ enabled",
+    "severity": "MEDIUM",
+    "category": "database",
+    "remediation_hint": "Fix required for CKV_AWS_157",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_60",
+    "finding_label": "Ensure RDS instance with copy tags to snapshots is enabled",
+    "description": "Ensure RDS instance with copy tags to snapshots is enabled",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV2_AWS_60",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "HIGH"
+ },
+ {
+  "file_id": "037c73c37f4b10ac",
+  "code": "resource \"aws_s3_bucket\" \"flowbucket\" {\n  bucket        = \"${local.resource_prefix.value}-flowlogs\"\n  force_destroy = true\n  tags = merge({\n    Name        = \"${local.resource_prefix.value}-flowlogs\"\n    Environment = local.resource_prefix.value\n    }, {\n  })\n}",
+  "code_hash": "669198dceff972663d5ae87daffb99fd",
+  "provider": "aws",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 9,
+  "findings": [
+   {
+    "check_id": "CKV2_AWS_62",
+    "finding_label": "Ensure S3 buckets should have event notifications enabled",
+    "description": "Ensure S3 buckets should have event notifications enabled",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV2_AWS_62",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_6",
+    "finding_label": "Ensure that S3 bucket has a Public Access block",
+    "description": "Ensure that S3 bucket has a Public Access block",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV2_AWS_6",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_21",
+    "finding_label": "Ensure all data stored in the S3 bucket have versioning enabled",
+    "description": "Ensure all data stored in the S3 bucket have versioning enabled",
+    "severity": "HIGH",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV_AWS_21",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_61",
+    "finding_label": "Ensure that an S3 bucket has a lifecycle configuration",
+    "description": "Ensure that an S3 bucket has a lifecycle configuration",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV2_AWS_61",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_145",
+    "finding_label": "Ensure that S3 buckets are encrypted with KMS by default",
+    "description": "Ensure that S3 buckets are encrypted with KMS by default",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_145",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_144",
+    "finding_label": "Ensure that S3 bucket has cross-region replication enabled",
+    "description": "Ensure that S3 bucket has cross-region replication enabled",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV_AWS_144",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_18",
+    "finding_label": "Ensure the S3 bucket has access logging enabled",
+    "description": "Ensure the S3 bucket has access logging enabled",
+    "severity": "HIGH",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_AWS_18",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "HIGH"
+ },
+ {
+  "file_id": "339446cac7780e6a",
+  "code": "resource \"aws_security_group_rule\" \"changeme_remote_exec_inline_security_group_rule_incoming_rdp\" {\n  security_group_id = aws_security_group.changeme_remote_exec_inline_windows_security_group.id\n  type              = \"ingress\"\n  from_port         = 3389\n  to_port           = 3389\n  protocol          = \"tcp\"\n  cidr_blocks       = [\"0.0.0.0/0\"]\n}",
+  "code_hash": "2e7b1cae44185a4ee0dbb00910f772c4",
+  "provider": "aws",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 8,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_25",
+    "finding_label": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389",
+    "description": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_AWS_25",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_23",
+    "finding_label": "Ensure every security group and rule has a description",
+    "description": "Ensure every security group and rule has a description",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_AWS_23",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "2d5519b8a79866c3",
+  "code": "resource \"aws_lb_listener\" \"webserver_listner\" {\n  load_balancer_arn = aws_lb.levelup-load-balancer.arn\n  port              = \"80\"\n  protocol          = \"HTTP\"\n  default_action {\n    target_group_arn = aws_lb_target_group.load-balancer-target-group.arn\n    type             = \"forward\"\n  }\n}",
+  "code_hash": "702fd9fdecb97cc842fabd29b9baf249",
+  "provider": "aws",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 9,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_2",
+    "finding_label": "Ensure ALB protocol is HTTPS",
+    "description": "Ensure ALB protocol is HTTPS",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_2",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_103",
+    "finding_label": "Ensure that load balancer is using at least TLS 1.2",
+    "description": "Ensure that load balancer is using at least TLS 1.2",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_103",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "8628175da2348734",
+  "code": "resource \"aws_instance\" \"ubuntu\" {\n  count = 3\n  ami = data.aws_ami.ubuntu_14_04.image_id\n  instance_type = \"t2.micro\"\n  associate_public_ip_address = ( count.index == 1 ? true : false)\n  subnet_id = aws_subnet.my_subnet.id\n}",
+  "code_hash": "983da9aa66ce1cf24fa6527566f120c1",
+  "provider": "aws",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 7,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_8",
+    "finding_label": "Ensure all data stored in the Launch configuration or instance Elastic Blocks Store is securely encrypted",
+    "description": "Ensure all data stored in the Launch configuration or instance Elastic Blocks Store is securely encrypted",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_8",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_126",
+    "finding_label": "Ensure that detailed monitoring is enabled for EC2 instances",
+    "description": "Ensure that detailed monitoring is enabled for EC2 instances",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_AWS_126",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_135",
+    "finding_label": "Ensure that EC2 is EBS optimized",
+    "description": "Ensure that EC2 is EBS optimized",
+    "severity": "MEDIUM",
+    "category": "storage-data",
+    "remediation_hint": "Fix required for CKV_AWS_135",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_79",
+    "finding_label": "Ensure Instance Metadata Service Version 1 is not enabled",
+    "description": "Ensure Instance Metadata Service Version 1 is not enabled",
+    "severity": "MEDIUM",
+    "category": "metadata-service",
+    "remediation_hint": "Fix required for CKV_AWS_79",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_88",
+    "finding_label": "EC2 instance should not have public IP.",
+    "description": "EC2 instance should not have public IP.",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_AWS_88",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_41",
+    "finding_label": "Ensure an IAM role is attached to EC2 instance",
+    "description": "Ensure an IAM role is attached to EC2 instance",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV2_AWS_41",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "ab3d55637f9cac99",
+  "code": "resource \"aws_eip\" \"ip\" {\n  instance = aws_instance.MyFirstInstnace.id\n}",
+  "code_hash": "e2ca495251bc8979fff80cd68f17c7f1",
+  "provider": "aws",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 3,
+  "findings": [
+   {
+    "check_id": "CKV2_AWS_19",
+    "finding_label": "Ensure that all EIP addresses allocated to a VPC are attached to EC2 instances",
+    "description": "Ensure that all EIP addresses allocated to a VPC are attached to EC2 instances",
+    "severity": "MEDIUM",
+    "category": "other",
+    "remediation_hint": "Fix required for CKV2_AWS_19",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "c93a740d4b1547e2",
+  "code": "resource \"aws_launch_template\" \"changeme_simple_asg_launch_template_nlb\" {\n  name                   = \"changeme-simple-asg-launch-template-nlb\"\n  image_id               = data.aws_ami.changeme_amazon_nlb_ami.id\n  instance_type          = \"t2.micro\"\n  vpc_security_group_ids = [aws_security_group.changeme_nlb_aws_security_group.id]\n  user_data              = filebase64(\"${path.module}/user_data.sh\")\n}",
+  "code_hash": "780c792583b7151add7ec7c5774d61dc",
+  "provider": "aws",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 7,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_79",
+    "finding_label": "Ensure Instance Metadata Service Version 1 is not enabled",
+    "description": "Ensure Instance Metadata Service Version 1 is not enabled",
+    "severity": "MEDIUM",
+    "category": "metadata-service",
+    "remediation_hint": "Fix required for CKV_AWS_79",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "d904a09799e475fb",
+  "code": "resource \"aws_launch_template\" \"web_app\" {\n  name_prefix   = \"automated-employee-onboarding-platform-lt-web-\"\n  image_id      = data.aws_ami.ubuntu.id\n  instance_type = var.instance_type\n  key_name      = var.key_pair_name\n  vpc_security_group_ids = [aws_security_group.web_app.id]\n  user_data = base64encode(<<-EOF\n              export DATABASE_PASSWORD=\"${var.db_password}\"\n              export API_KEY=\"sk-1234567890abcdef\"\n              apt-get update\n              apt-get install -y nginx nodejs npm\n              systemctl start nginx\n              systemctl enable nginx\n              EOF\n  )\n  tag_specifications {\n    resource_type = \"instance\"\n  }\n}",
+  "code_hash": "56a3ffde59c200870aaf1f2123646d5d",
+  "provider": "aws",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 19,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_79",
+    "finding_label": "Ensure Instance Metadata Service Version 1 is not enabled",
+    "description": "Ensure Instance Metadata Service Version 1 is not enabled",
+    "severity": "MEDIUM",
+    "category": "metadata-service",
+    "remediation_hint": "Fix required for CKV_AWS_79",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "71aa3fdcc9368431",
+  "code": "resource \"aws_iam_policy\" \"privesc-ssmStartSession-policy\" {\n  name        = \"privesc-ssmStartSession-policy\"\n  path        = \"/\"\n  description = \"Allows privesc via targeted ssm\"\n  policy = jsonencode({\n    Version = \"2012-10-17\"\n    Statement = [\n      {\n        Effect   = \"Allow\"\n        Action = [\n          \"ec2:DescribeInstances\",\n          \"ssm:StartSession\",\n           \"ssm:DescribeSessions\",\n            \"ssm:GetConnectionStatus\",\n            \"ssm:DescribeInstanceProperties\",\n            \"ssm:TerminateSession\",\n            \"ssm:ResumeSession\"\n        ]\n        Resource = \"*\"\n      },\n    ]\n  })\n}",
+  "code_hash": "8b8dff50cd84f9b5dfd04280708074a0",
+  "provider": "aws",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 23,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_355",
+    "finding_label": "Ensure no IAM policies documents allow \"*\" as a statement's resource for restrictable actions",
+    "description": "Ensure no IAM policies documents allow \"*\" as a statement's resource for restrictable actions",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV_AWS_355",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_290",
+    "finding_label": "Ensure IAM policies does not allow write access without constraints",
+    "description": "Ensure IAM policies does not allow write access without constraints",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV_AWS_290",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "c96b12329e0e4e9f",
+  "code": "resource \"aws_iam_user_policy_attachment\" \"privesc3-passrole-user-attach-policy\" {\n  user       = aws_iam_user.fn1-privesc3-partial-user.name\n  policy_arn = aws_iam_policy.fn1-passrole-star.arn\n}",
+  "code_hash": "fee082a884d91765df6ef0047c2df54d",
+  "provider": "aws",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 4,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_40",
+    "finding_label": "Ensure IAM policies are attached only to groups or roles (Reducing access management complexity may in-turn reduce opportunity for a principal to inadvertently receive or retain excessive privileges.)",
+    "description": "Ensure IAM policies are attached only to groups or roles (Reducing access management complexity may in-turn reduce opportunity for a principal to inadvertently receive or retain excessive privileges.)",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV_AWS_40",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "45577dc372cfc4c3",
+  "code": "resource \"aws_security_group\" \"vault\" {\n  name        = \"vault\"\n  description = \"Ingress for Vault\"\n  vpc_id      = aws_vpc.my_vpc.id\n  dynamic \"ingress\" {\n    iterator = port\n    for_each = var.ingress_ports\n    content {\n      from_port   = port.value\n      to_port     = port.value\n      protocol    = \"tcp\"\n      cidr_blocks = [\"0.0.0.0/0\"]\n    }\n  }\n}",
+  "code_hash": "87cbbfc836445b247432a4735086060d",
+  "provider": "aws",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 15,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_23",
+    "finding_label": "Ensure every security group and rule has a description",
+    "description": "Ensure every security group and rule has a description",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_AWS_23",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_5",
+    "finding_label": "Ensure that Security Groups are attached to another resource",
+    "description": "Ensure that Security Groups are attached to another resource",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV2_AWS_5",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "31bd25c23e9f594d",
+  "code": "resource \"aws_security_group\" \"lb\" {\n  name   = \"allow-all-lb\"\n  vpc_id = data.aws_vpc.main.id\n  ingress {\n    from_port   = 0\n    to_port     = 0\n    protocol    = \"-1\"\n    cidr_blocks = [\"0.0.0.0/0\"]\n  }\n  egress {\n    from_port   = 0\n    to_port     = 0\n    protocol    = \"-1\"\n    cidr_blocks = [\"0.0.0.0/0\"]\n  }\n}",
+  "code_hash": "4ea195de518224f6a21b3f29a61df7c3",
+  "provider": "aws",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 16,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_260",
+    "finding_label": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80",
+    "description": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_AWS_260",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_277",
+    "finding_label": "Ensure no security groups allow ingress from 0.0.0.0:0 to port -1",
+    "description": "Ensure no security groups allow ingress from 0.0.0.0:0 to port -1",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_AWS_277",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_25",
+    "finding_label": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389",
+    "description": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_AWS_25",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_24",
+    "finding_label": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22",
+    "description": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_AWS_24",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_23",
+    "finding_label": "Ensure every security group and rule has a description",
+    "description": "Ensure every security group and rule has a description",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_AWS_23",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_382",
+    "finding_label": "Ensure no security groups allow egress from 0.0.0.0:0 to port -1",
+    "description": "Ensure no security groups allow egress from 0.0.0.0:0 to port -1",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_AWS_382",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "37941484b0aab388",
+  "code": "resource \"aws_instance\" \"MyFirstInstnace\" {\n  ami           = lookup(var.AMIS, var.AWS_REGION)\n  instance_type = \"t2.micro\"\n  availability_zone = \"us-east-2a\"\n  key_name      = aws_key_pair.levelup_key.key_name\n  vpc_security_group_ids = [aws_security_group.allow-levelup-ssh.id]\n  subnet_id = aws_subnet.levelupvpc-public-1.id\n}",
+  "code_hash": "b87e51a4306577b38ef918ffff51ee84",
+  "provider": "aws",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 8,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_8",
+    "finding_label": "Ensure all data stored in the Launch configuration or instance Elastic Blocks Store is securely encrypted",
+    "description": "Ensure all data stored in the Launch configuration or instance Elastic Blocks Store is securely encrypted",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_8",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_126",
+    "finding_label": "Ensure that detailed monitoring is enabled for EC2 instances",
+    "description": "Ensure that detailed monitoring is enabled for EC2 instances",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_AWS_126",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_135",
+    "finding_label": "Ensure that EC2 is EBS optimized",
+    "description": "Ensure that EC2 is EBS optimized",
+    "severity": "MEDIUM",
+    "category": "storage-data",
+    "remediation_hint": "Fix required for CKV_AWS_135",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_79",
+    "finding_label": "Ensure Instance Metadata Service Version 1 is not enabled",
+    "description": "Ensure Instance Metadata Service Version 1 is not enabled",
+    "severity": "MEDIUM",
+    "category": "metadata-service",
+    "remediation_hint": "Fix required for CKV_AWS_79",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_41",
+    "finding_label": "Ensure an IAM role is attached to EC2 instance",
+    "description": "Ensure an IAM role is attached to EC2 instance",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV2_AWS_41",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "aac7ef47f033b977",
+  "code": "resource \"aws_iam_user\" \"fp3-deny-iam-user\" {\n  name = \"fp3-deny-iam-user\"\n  path = \"/\"\n}",
+  "code_hash": "7f48eacdd35e510cd0ae129cf6fd4f1e",
+  "provider": "aws",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 4,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_273",
+    "finding_label": "Ensure access is controlled through SSO and not AWS IAM defined users",
+    "description": "Ensure access is controlled through SSO and not AWS IAM defined users",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV_AWS_273",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "e2a1d8b6ba9be859",
+  "code": "resource \"aws_iam_user_policy_attachment\" \"privesc15-PassExistingRoleToNewLambdaThenInvoke-user-attach-policy\" {\n  user       = aws_iam_user.privesc15-PassExistingRoleToNewLambdaThenInvoke-user.name\n  policy_arn = aws_iam_policy.privesc15-PassExistingRoleToNewLambdaThenInvoke.arn\n}",
+  "code_hash": "62d25f017d1f7e28c587cc8b0c19a585",
+  "provider": "aws",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 4,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_40",
+    "finding_label": "Ensure IAM policies are attached only to groups or roles (Reducing access management complexity may in-turn reduce opportunity for a principal to inadvertently receive or retain excessive privileges.)",
+    "description": "Ensure IAM policies are attached only to groups or roles (Reducing access management complexity may in-turn reduce opportunity for a principal to inadvertently receive or retain excessive privileges.)",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV_AWS_40",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "3e73b9855eca4946",
+  "code": "resource \"aws_iam_policy\" \"privesc-sageMakerCreatePresignedNotebookURL-policy\" {\n  name        = \"privesc-sageMakerCreatePresignedNotebookURL-policy\"\n  path        = \"/\"\n  description = \"Allows privesc via sagemakerCreatePresignedNotebookURL\"\n  policy = jsonencode({\n    Version = \"2012-10-17\"\n    Statement = [\n      {\n        Effect   = \"Allow\"\n        Action = [\n          \"sagemaker:CreatePresignedNotebookInstanceUrl\",\n          \"sagemaker:ListNotebookInstances\"\n        ]\n        Resource = \"*\"\n      },\n    ]\n  })\n}",
+  "code_hash": "1c2755270261a8e05f30282e549cd7d3",
+  "provider": "aws",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 18,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_355",
+    "finding_label": "Ensure no IAM policies documents allow \"*\" as a statement's resource for restrictable actions",
+    "description": "Ensure no IAM policies documents allow \"*\" as a statement's resource for restrictable actions",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV_AWS_355",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_290",
+    "finding_label": "Ensure IAM policies does not allow write access without constraints",
+    "description": "Ensure IAM policies does not allow write access without constraints",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV_AWS_290",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "bf503aa663956489",
+  "code": "resource \"aws_iam_user\" \"privesc11-PutGroupPolicy-user\" {\n  name = \"privesc11-PutGroupPolicy-user\"\n  path = \"/\"\n}",
+  "code_hash": "2af7b3d8348393e43fb6b32db9400ece",
+  "provider": "aws",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 4,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_273",
+    "finding_label": "Ensure access is controlled through SSO and not AWS IAM defined users",
+    "description": "Ensure access is controlled through SSO and not AWS IAM defined users",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV_AWS_273",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "949445486094fcdb",
+  "code": "resource \"aws_iam_user\" \"privesc15-PassExistingRoleToNewLambdaThenInvoke-user\" {\n  name = \"privesc15-PassExistingRoleToNewLambdaThenInvoke-user\"\n  path = \"/\"\n}",
+  "code_hash": "07e9590b34e2581bd7116048b2a6cb91",
+  "provider": "aws",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 4,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_273",
+    "finding_label": "Ensure access is controlled through SSO and not AWS IAM defined users",
+    "description": "Ensure access is controlled through SSO and not AWS IAM defined users",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV_AWS_273",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "d7803c8ce7675f89",
+  "code": "resource \"aws_iam_user_policy_attachment\" \"privesc19-UpdateExistingGlueDevEndpoint-user-attach-policy\" {\n  user       = aws_iam_user.privesc19-UpdateExistingGlueDevEndpoint-user.name\n  policy_arn = aws_iam_policy.privesc19-UpdateExistingGlueDevEndpoint.arn\n}",
+  "code_hash": "648cedc2e2d93aa36ef915665340b3db",
+  "provider": "aws",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 4,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_40",
+    "finding_label": "Ensure IAM policies are attached only to groups or roles (Reducing access management complexity may in-turn reduce opportunity for a principal to inadvertently receive or retain excessive privileges.)",
+    "description": "Ensure IAM policies are attached only to groups or roles (Reducing access management complexity may in-turn reduce opportunity for a principal to inadvertently receive or retain excessive privileges.)",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV_AWS_40",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "b2021821dc75e106",
+  "code": "resource \"aws_lambda_permission\" \"api_gateway_invoke\" {\n  statement_id  = \"AllowExecutionFromAPIGateway\"\n  action        = \"lambda:InvokeFunction\"\n  function_name = aws_lambda_function.log_processing_pipeline.function_name\n  principal     = \"apigateway.amazonaws.com\"\n}",
+  "code_hash": "56ac06415c4e22681319aa68b423e7d8",
+  "provider": "aws",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 6,
+  "findings": [
+   {
+    "check_id": "AVD-AWS-0067",
+    "finding_label": "Lambda permission lacks source ARN for *.amazonaws.com principal.",
+    "description": "Not providing the source ARN allows any resource from principal, even from other accounts",
+    "severity": "CRITICAL",
+    "category": "identity-access",
+    "remediation_hint": "Always provide a source arn for Lambda permissions",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_364",
+    "finding_label": "Ensure that AWS Lambda function permissions delegated to AWS services are limited by SourceArn or SourceAccount",
+    "description": "Ensure that AWS Lambda function permissions delegated to AWS services are limited by SourceArn or SourceAccount",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV_AWS_364",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "CRITICAL"
+ },
+ {
+  "file_id": "c32905bbd291a695",
+  "code": "resource \"aws_s3_bucket_public_access_block\" \"document_storage\" {\n  bucket = aws_s3_bucket.document_storage.id\n  block_public_policy     = true\n  ignore_public_acls      = true\n  restrict_public_buckets = true\n}",
+  "code_hash": "82900edf44a37056c4eb7595001fef8a",
+  "provider": "aws",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 6,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_53",
+    "finding_label": "Ensure S3 bucket has block public ACLS enabled",
+    "description": "Ensure S3 bucket has block public ACLS enabled",
+    "severity": "CRITICAL",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_AWS_53",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "CRITICAL"
+ },
+ {
+  "file_id": "c79ae12ba1a8abd3",
+  "code": "resource \"aws_s3_bucket_public_access_block\" \"api_docs\" {\n  bucket = aws_s3_bucket.api_docs.id\n  restrict_public_buckets = false\n}",
+  "code_hash": "259fd9efe5305c3b1c0024420f591ba0",
+  "provider": "aws",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 4,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_56",
+    "finding_label": "Ensure S3 bucket has 'restrict_public_buckets' enabled",
+    "description": "Ensure S3 bucket has 'restrict_public_buckets' enabled",
+    "severity": "MEDIUM",
+    "category": "storage-data",
+    "remediation_hint": "Fix required for CKV_AWS_56",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_53",
+    "finding_label": "Ensure S3 bucket has block public ACLS enabled",
+    "description": "Ensure S3 bucket has block public ACLS enabled",
+    "severity": "CRITICAL",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_AWS_53",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_55",
+    "finding_label": "Ensure S3 bucket has ignore public ACLs enabled",
+    "description": "Ensure S3 bucket has ignore public ACLs enabled",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_AWS_55",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_54",
+    "finding_label": "Ensure S3 bucket has block public policy enabled",
+    "description": "Ensure S3 bucket has block public policy enabled",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV_AWS_54",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "CRITICAL"
+ },
+ {
+  "file_id": "9e3b4fb381e7773e",
+  "code": "resource \"aws_launch_configuration\" \"lc\" {\n  name          = \"test_ecs\"\n  image_id      = data.aws_ami.amazon_linux.id\n  instance_type = \"t2.micro\"\n  lifecycle {\n    create_before_destroy = true\n  }\n  iam_instance_profile        = aws_iam_instance_profile.ecs_service_role.name\n  key_name                    = var.key_name\n  security_groups             = [aws_security_group.ec2-sg.id]\n  associate_public_ip_address = true\n  user_data                   = <<EOF\nsudo apt-get update\nsudo echo \"ECS_CLUSTER=${var.cluster_name}\" >> /etc/ecs/ecs.config\nEOF\n}",
+  "code_hash": "3b82d3f8423814fa4dd11848aeb94457",
+  "provider": "aws",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 16,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_8",
+    "finding_label": "Ensure all data stored in the Launch configuration or instance Elastic Blocks Store is securely encrypted",
+    "description": "Ensure all data stored in the Launch configuration or instance Elastic Blocks Store is securely encrypted",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_8",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_389",
+    "finding_label": "Ensure AWS Auto Scaling group launch configuration doesn't have public IP address assignment enabled",
+    "description": "Ensure AWS Auto Scaling group launch configuration doesn't have public IP address assignment enabled",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_AWS_389",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_79",
+    "finding_label": "Ensure Instance Metadata Service Version 1 is not enabled",
+    "description": "Ensure Instance Metadata Service Version 1 is not enabled",
+    "severity": "MEDIUM",
+    "category": "metadata-service",
+    "remediation_hint": "Fix required for CKV_AWS_79",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "59a08e3e14186a1f",
+  "code": "resource \"aws_elasticsearch_domain\" \"log_search_database\" {\n  domain_name           = \"enterprise-log-analytics-es\"\n  elasticsearch_version = \"7.10\"\n  cluster_config {\n    instance_type  = var.elasticsearch_instance_type\n    instance_count = 2\n  }\n  vpc_options {\n    subnet_ids         = [aws_subnet.data_subnet_az1.id]\n    security_group_ids = [aws_security_group.elasticsearch_sg.id]\n  }\n  ebs_options {\n    ebs_enabled = true\n    volume_size = 20\n    volume_type = \"gp2\"\n  }\n  encrypt_at_rest {\n    enabled = false\n  }\n}",
+  "code_hash": "dfdb1f117813579ada756d1b196818e8",
+  "provider": "aws",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 20,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_5",
+    "finding_label": "Ensure all data stored in the Elasticsearch is securely encrypted at rest",
+    "description": "Ensure all data stored in the Elasticsearch is securely encrypted at rest",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_5",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_228",
+    "finding_label": "Verify Elasticsearch domain is using an up to date TLS policy",
+    "description": "Verify Elasticsearch domain is using an up to date TLS policy",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_228",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_317",
+    "finding_label": "Ensure Elasticsearch Domain Audit Logging is enabled",
+    "description": "Ensure Elasticsearch Domain Audit Logging is enabled",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_AWS_317",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_318",
+    "finding_label": "Ensure Elasticsearch domains are configured with at least three dedicated master nodes for HA",
+    "description": "Ensure Elasticsearch domains are configured with at least three dedicated master nodes for HA",
+    "severity": "MEDIUM",
+    "category": "detection-controls",
+    "remediation_hint": "Fix required for CKV_AWS_318",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_84",
+    "finding_label": "Ensure Elasticsearch Domain Logging is enabled",
+    "description": "Ensure Elasticsearch Domain Logging is enabled",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_AWS_84",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_6",
+    "finding_label": "Ensure all Elasticsearch has node-to-node encryption enabled",
+    "description": "Ensure all Elasticsearch has node-to-node encryption enabled",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_6",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_247",
+    "finding_label": "Ensure all data stored in the Elasticsearch is encrypted with a CMK",
+    "description": "Ensure all data stored in the Elasticsearch is encrypted with a CMK",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_247",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_59",
+    "finding_label": "Ensure ElasticSearch/OpenSearch has dedicated master node enabled",
+    "description": "Ensure ElasticSearch/OpenSearch has dedicated master node enabled",
+    "severity": "MEDIUM",
+    "category": "other",
+    "remediation_hint": "Fix required for CKV2_AWS_59",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_52",
+    "finding_label": "Ensure AWS ElasticSearch/OpenSearch Fine-grained access control is enabled",
+    "description": "Ensure AWS ElasticSearch/OpenSearch Fine-grained access control is enabled",
+    "severity": "MEDIUM",
+    "category": "other",
+    "remediation_hint": "Fix required for CKV2_AWS_52",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "9d72613fe27be04a",
+  "code": "resource \"aws_vpc\" \"changeme_aws_vpc_simple\" {\n  cidr_block = \"10.1.0.0/16\"\n}",
+  "code_hash": "db74b0cb1d1646a03a0029447739d2c0",
+  "provider": "aws",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 3,
+  "findings": [
+   {
+    "check_id": "CKV2_AWS_11",
+    "finding_label": "Ensure VPC flow logging is enabled in all VPCs",
+    "description": "Ensure VPC flow logging is enabled in all VPCs",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV2_AWS_11",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AWS_12",
+    "finding_label": "Ensure the default security group of every VPC restricts all traffic",
+    "description": "Ensure the default security group of every VPC restricts all traffic",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV2_AWS_12",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "c74fd173c250cb1b",
+  "code": "resource \"aws_iam_user_policy_attachment\" \"privesc18-PassExistingRoleToNewGlueDevEndpoint-user-attach-policy\" {\n  user       = aws_iam_user.privesc18-PassExistingRoleToNewGlueDevEndpoint-user.name\n  policy_arn = aws_iam_policy.privesc18-PassExistingRoleToNewGlueDevEndpoint.arn\n}",
+  "code_hash": "1034b8c500535a3cf6fba793ac2d9528",
+  "provider": "aws",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 4,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_40",
+    "finding_label": "Ensure IAM policies are attached only to groups or roles (Reducing access management complexity may in-turn reduce opportunity for a principal to inadvertently receive or retain excessive privileges.)",
+    "description": "Ensure IAM policies are attached only to groups or roles (Reducing access management complexity may in-turn reduce opportunity for a principal to inadvertently receive or retain excessive privileges.)",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV_AWS_40",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "e9799f5a600a4d1c",
+  "code": "resource \"aws_ebs_volume\" \"changeme_simple_aws_ebs_volume\" {\n  availability_zone = data.aws_availability_zones.changeme_available_az_list.names[0]\n  size              = 10\n  type              = \"standard\"\n  encrypted         = false\n}",
+  "code_hash": "3d0358dcb8e515c02e3b5f6d956fb5be",
+  "provider": "aws",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 6,
+  "findings": [
+   {
+    "check_id": "CKV_AWS_189",
+    "finding_label": "Ensure EBS Volume is encrypted by KMS using a customer managed Key (CMK)",
+    "description": "Ensure EBS Volume is encrypted by KMS using a customer managed Key (CMK)",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_189",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AWS_3",
+    "finding_label": "Ensure all data stored in the EBS is securely encrypted",
+    "description": "Ensure all data stored in the EBS is securely encrypted",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AWS_3",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "ef24604603b66f8d",
+  "code": "resource \"azurerm_storage_account\" \"notification_storage\" {\n  name                     = \"smartgridscada${random_string.suffix.result}\"\n  resource_group_name      = azurerm_resource_group.smart_grid_rg.name\n  location                 = azurerm_resource_group.smart_grid_rg.location\n  account_tier             = \"Standard\"\n  account_replication_type = \"LRS\"\n  enable_https_traffic_only = false\n}",
+  "code_hash": "9ce0523e5cdf2f09c3a02dafdc70f7f4",
+  "provider": "azurerm",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 8,
+  "findings": [
+   {
+    "check_id": "CKV_AZURE_3",
+    "finding_label": "Ensure that 'enable_https_traffic_only' is enabled",
+    "description": "Ensure that 'enable_https_traffic_only' is enabled",
+    "severity": "HIGH",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AZURE_3",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_59",
+    "finding_label": "Ensure that Storage accounts disallow public access",
+    "description": "Ensure that Storage accounts disallow public access",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_AZURE_59",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_44",
+    "finding_label": "Ensure Storage Account is using the latest version of TLS encryption",
+    "description": "Ensure Storage Account is using the latest version of TLS encryption",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AZURE_44",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_206",
+    "finding_label": "Ensure that Storage Accounts use replication",
+    "description": "Ensure that Storage Accounts use replication",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV_AZURE_206",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_190",
+    "finding_label": "Ensure that Storage blobs restrict public access",
+    "description": "Ensure that Storage blobs restrict public access",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_AZURE_190",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_33",
+    "finding_label": "Ensure Storage logging is enabled for Queue service for read, write and delete requests",
+    "description": "Ensure Storage logging is enabled for Queue service for read, write and delete requests",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_AZURE_33",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AZURE_33",
+    "finding_label": "Ensure storage account is configured with private endpoint",
+    "description": "Ensure storage account is configured with private endpoint",
+    "severity": "MEDIUM",
+    "category": "storage-data",
+    "remediation_hint": "Fix required for CKV2_AZURE_33",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AZURE_41",
+    "finding_label": "Ensure storage account is configured with SAS expiration policy",
+    "description": "Ensure storage account is configured with SAS expiration policy",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV2_AZURE_41",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AZURE_40",
+    "finding_label": "Ensure storage account is not configured with Shared Key authorization",
+    "description": "Ensure storage account is not configured with Shared Key authorization",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV2_AZURE_40",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AZURE_47",
+    "finding_label": "Ensure storage account is configured without blob anonymous access",
+    "description": "Ensure storage account is configured without blob anonymous access",
+    "severity": "MEDIUM",
+    "category": "storage-data",
+    "remediation_hint": "Fix required for CKV2_AZURE_47",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AZURE_38",
+    "finding_label": "Ensure soft-delete is enabled on Azure storage account",
+    "description": "Ensure soft-delete is enabled on Azure storage account",
+    "severity": "MEDIUM",
+    "category": "storage-data",
+    "remediation_hint": "Fix required for CKV2_AZURE_38",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AZURE_1",
+    "finding_label": "Ensure storage for critical data are encrypted with Customer Managed Key",
+    "description": "Ensure storage for critical data are encrypted with Customer Managed Key",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV2_AZURE_1",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "HIGH"
+ },
+ {
+  "file_id": "80ab261eab17d2db",
+  "code": "resource \"azurerm_storage_account\" \"media_storage\" {\n  name                     = \"corpmediastorage${random_string.storage_suffix.result}\"\n  resource_group_name      = azurerm_resource_group.corporate_media_streaming.name\n  location                 = azurerm_resource_group.corporate_media_streaming.location\n  account_tier             = \"Standard\"\n  account_replication_type = \"GRS\"\n  enable_https_traffic_only = false\n  min_tls_version = \"TLS1_0\"\n  blob_properties {\n    versioning_enabled = true\n  }\n}",
+  "code_hash": "db77acbafd3802243cc873711ee146bd",
+  "provider": "azurerm",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 12,
+  "findings": [
+   {
+    "check_id": "CKV_AZURE_3",
+    "finding_label": "Ensure that 'enable_https_traffic_only' is enabled",
+    "description": "Ensure that 'enable_https_traffic_only' is enabled",
+    "severity": "HIGH",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AZURE_3",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_59",
+    "finding_label": "Ensure that Storage accounts disallow public access",
+    "description": "Ensure that Storage accounts disallow public access",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_AZURE_59",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_44",
+    "finding_label": "Ensure Storage Account is using the latest version of TLS encryption",
+    "description": "Ensure Storage Account is using the latest version of TLS encryption",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AZURE_44",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_190",
+    "finding_label": "Ensure that Storage blobs restrict public access",
+    "description": "Ensure that Storage blobs restrict public access",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_AZURE_190",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_33",
+    "finding_label": "Ensure Storage logging is enabled for Queue service for read, write and delete requests",
+    "description": "Ensure Storage logging is enabled for Queue service for read, write and delete requests",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_AZURE_33",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AZURE_33",
+    "finding_label": "Ensure storage account is configured with private endpoint",
+    "description": "Ensure storage account is configured with private endpoint",
+    "severity": "MEDIUM",
+    "category": "storage-data",
+    "remediation_hint": "Fix required for CKV2_AZURE_33",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AZURE_41",
+    "finding_label": "Ensure storage account is configured with SAS expiration policy",
+    "description": "Ensure storage account is configured with SAS expiration policy",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV2_AZURE_41",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AZURE_40",
+    "finding_label": "Ensure storage account is not configured with Shared Key authorization",
+    "description": "Ensure storage account is not configured with Shared Key authorization",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV2_AZURE_40",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AZURE_47",
+    "finding_label": "Ensure storage account is configured without blob anonymous access",
+    "description": "Ensure storage account is configured without blob anonymous access",
+    "severity": "MEDIUM",
+    "category": "storage-data",
+    "remediation_hint": "Fix required for CKV2_AZURE_47",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AZURE_38",
+    "finding_label": "Ensure soft-delete is enabled on Azure storage account",
+    "description": "Ensure soft-delete is enabled on Azure storage account",
+    "severity": "MEDIUM",
+    "category": "storage-data",
+    "remediation_hint": "Fix required for CKV2_AZURE_38",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AZURE_1",
+    "finding_label": "Ensure storage for critical data are encrypted with Customer Managed Key",
+    "description": "Ensure storage for critical data are encrypted with Customer Managed Key",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV2_AZURE_1",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "HIGH"
+ },
+ {
+  "file_id": "07d93b8fff81f251",
+  "code": "resource \"azurerm_storage_account_network_rules\" \"notification_storage_rules\" {\n  storage_account_id = azurerm_storage_account.notification_storage.id\n  default_action     = \"Allow\"\n  ip_rules           = [\"127.0.0.1\"]\n  bypass             = [\"Metrics\", \"Logging\"]\n}",
+  "code_hash": "178b3ccda41ec767dbfa1f82a7dc6240",
+  "provider": "azurerm",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 6,
+  "findings": [
+   {
+    "check_id": "AVD-AZU-0010",
+    "finding_label": "Network rules do not allow bypass for Microsoft Services.",
+    "description": "Trusted Microsoft Services won't be able to access storage account unless rules set to allow",
+    "severity": "HIGH",
+    "category": "storage-data",
+    "remediation_hint": "Allow Trusted Microsoft Services to bypass",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_35",
+    "finding_label": "Ensure default network access rule for Storage Accounts is set to deny",
+    "description": "Ensure default network access rule for Storage Accounts is set to deny",
+    "severity": "MEDIUM",
+    "category": "storage-data",
+    "remediation_hint": "Fix required for CKV_AZURE_35",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "HIGH"
+ },
+ {
+  "file_id": "354e54a53d615ffd",
+  "code": "resource \"azurerm_mssql_server_security_alert_policy\" \"recovery_db_alerts\" {\n  resource_group_name        = azurerm_resource_group.dr_platform.name\n  server_name                = azurerm_mssql_server.recovery_sql_server.name\n  state                      = \"Enabled\"\n  storage_endpoint           = azurerm_storage_account.backup_storage.primary_blob_endpoint\n  storage_account_access_key = azurerm_storage_account.backup_storage.primary_access_key\n  disabled_alerts = [\n    \"Sql_Injection\",\n    \"Data_Exfiltration\"\n  ]\n  retention_days = 20\n}",
+  "code_hash": "21bbccfd524e732036934d96dd44639d",
+  "provider": "azurerm",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 12,
+  "findings": [
+   {
+    "check_id": "AVD-AZU-0018",
+    "finding_label": "Security alert policy does not include any email addresses for notification.",
+    "description": "Nobody will be prompty alerted in the case of a threat being detected",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Provide at least one email address for threat alerts",
+    "reproduced": false
+   },
+   {
+    "check_id": "AVD-AZU-0023",
+    "finding_label": "Security alert policy does not alert account admins.",
+    "description": "Administrators and subscription owners may have a delayed response",
+    "severity": "LOW",
+    "category": "identity-access",
+    "remediation_hint": "Enable email to subscription owners",
+    "reproduced": false
+   },
+   {
+    "check_id": "CKV_AZURE_26",
+    "finding_label": "Ensure that 'Send Alerts To' is enabled for MSSQL servers",
+    "description": "Ensure that 'Send Alerts To' is enabled for MSSQL servers",
+    "severity": "MEDIUM",
+    "category": "database",
+    "remediation_hint": "Fix required for CKV_AZURE_26",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_25",
+    "finding_label": "Ensure that 'Threat Detection types' is set to 'All'",
+    "description": "Ensure that 'Threat Detection types' is set to 'All'",
+    "severity": "MEDIUM",
+    "category": "other",
+    "remediation_hint": "Fix required for CKV_AZURE_25",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_27",
+    "finding_label": "Ensure that 'Email service and co-administrators' is 'Enabled' for MSSQL servers",
+    "description": "Ensure that 'Email service and co-administrators' is 'Enabled' for MSSQL servers",
+    "severity": "MEDIUM",
+    "category": "database",
+    "remediation_hint": "Fix required for CKV_AZURE_27",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "8b8dd8401e989744",
+  "code": "resource \"azurerm_mssql_server\" \"changeme_simple_mssql_server\" {\n  name                = \"changeme-simple-mssql-database-name\"\n  resource_group_name = azurerm_resource_group.changeme_simple_mssql_server_resource_group.name\n  location            = azurerm_resource_group.changeme_simple_mssql_server_resource_group.location\n  version = \"12.0\"\n  administrator_login          = \"changemeadmin\"\n  administrator_login_password = \"ch4ng3m3-A@\u00c2\u00a3$%^&\"\n}",
+  "code_hash": "b00c2213334d3b732151c67496c7ae17",
+  "provider": "azurerm",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 8,
+  "findings": [
+   {
+    "check_id": "CKV_AZURE_113",
+    "finding_label": "Ensure that SQL server disables public network access",
+    "description": "Ensure that SQL server disables public network access",
+    "severity": "MEDIUM",
+    "category": "database",
+    "remediation_hint": "Fix required for CKV_AZURE_113",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_52",
+    "finding_label": "Ensure MSSQL is using the latest version of TLS encryption",
+    "description": "Ensure MSSQL is using the latest version of TLS encryption",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AZURE_52",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AZURE_2",
+    "finding_label": "Ensure that Vulnerability Assessment (VA) is enabled on a SQL server by setting a Storage Account",
+    "description": "Ensure that Vulnerability Assessment (VA) is enabled on a SQL server by setting a Storage Account",
+    "severity": "MEDIUM",
+    "category": "storage-data",
+    "remediation_hint": "Fix required for CKV2_AZURE_2",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AZURE_45",
+    "finding_label": "Ensure Microsoft SQL server is configured with private endpoint",
+    "description": "Ensure Microsoft SQL server is configured with private endpoint",
+    "severity": "MEDIUM",
+    "category": "database",
+    "remediation_hint": "Fix required for CKV2_AZURE_45",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AZURE_27",
+    "finding_label": "Ensure Azure AD authentication is enabled for Azure SQL (MSSQL)",
+    "description": "Ensure Azure AD authentication is enabled for Azure SQL (MSSQL)",
+    "severity": "MEDIUM",
+    "category": "database",
+    "remediation_hint": "Fix required for CKV2_AZURE_27",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_23",
+    "finding_label": "Ensure that 'Auditing' is set to 'On' for SQL servers",
+    "description": "Ensure that 'Auditing' is set to 'On' for SQL servers",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_AZURE_23",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_24",
+    "finding_label": "Ensure that 'Auditing' Retention is 'greater than 90 days' for SQL servers",
+    "description": "Ensure that 'Auditing' Retention is 'greater than 90 days' for SQL servers",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_AZURE_24",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "c97a1ece1448fc24",
+  "code": "resource \"azurerm_key_vault_key\" \"generated\" {\n  name         = \"terragoat-generated-certificate-${var.environment}\"\n  key_vault_id = azurerm_key_vault.example.id\n  key_type     = \"RSA\"\n  key_size     = 2048\n  key_opts = [\n    \"decrypt\",\n    \"encrypt\",\n    \"sign\",\n    \"unwrapKey\",\n    \"verify\",\n    \"wrapKey\",\n  ]\n}",
+  "code_hash": "bb73c3886eb71965df01b456d97d7b13",
+  "provider": "azurerm",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 14,
+  "findings": [
+   {
+    "check_id": "CKV_AZURE_112",
+    "finding_label": "Ensure that key vault key is backed by HSM",
+    "description": "Ensure that key vault key is backed by HSM",
+    "severity": "MEDIUM",
+    "category": "other",
+    "remediation_hint": "Fix required for CKV_AZURE_112",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_40",
+    "finding_label": "Ensure that the expiration date is set on all keys",
+    "description": "Ensure that the expiration date is set on all keys",
+    "severity": "MEDIUM",
+    "category": "other",
+    "remediation_hint": "Fix required for CKV_AZURE_40",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "7f1df8d0e1b55f96",
+  "code": "resource \"azurerm_mssql_database\" \"trading_database\" {\n  name           = \"trading-database\"\n  server_id      = azurerm_mssql_server.trading_sql_server.id\n  collation      = \"SQL_Latin1_General_CP1_CI_AS\"\n  license_type   = \"LicenseIncluded\"\n  max_size_gb    = 100\n  sku_name       = \"S2\"\n  zone_redundant = false\n}",
+  "code_hash": "3039716ed6327664af5450705d66ab2b",
+  "provider": "azurerm",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 9,
+  "findings": [
+   {
+    "check_id": "CKV_AZURE_224",
+    "finding_label": "Ensure that the Ledger feature is enabled on database that requires cryptographic proof and nonrepudiation of data integrity",
+    "description": "Ensure that the Ledger feature is enabled on database that requires cryptographic proof and nonrepudiation of data integrity",
+    "severity": "MEDIUM",
+    "category": "database",
+    "remediation_hint": "Fix required for CKV_AZURE_224",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_229",
+    "finding_label": "Ensure the Azure SQL Database Namespace is zone redundant",
+    "description": "Ensure the Azure SQL Database Namespace is zone redundant",
+    "severity": "MEDIUM",
+    "category": "database",
+    "remediation_hint": "Fix required for CKV_AZURE_229",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "ec6ff91f63a024e3",
+  "code": "resource \"azurerm_linux_function_app\" \"alert_function\" {\n  name                = \"smart-manufacturing-iot-monitoring-platform-function-app-alerts\"\n  resource_group_name = azurerm_resource_group.smart_manufacturing.name\n  location            = azurerm_resource_group.smart_manufacturing.location\n  service_plan_id     = azurerm_service_plan.dashboard_plan.id\n  storage_account_name       = azurerm_storage_account.function_storage.name\n  storage_account_access_key = azurerm_storage_account.function_storage.primary_access_key\n  site_config {\n    application_stack {\n      node_version = \"18\"\n    }\n  }\n  app_settings = {\n    \"FUNCTIONS_WORKER_RUNTIME\" = \"node\"\n  }\n}",
+  "code_hash": "e940741ac2834bff15c13c9bc3db3ecc",
+  "provider": "azurerm",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 16,
+  "findings": [
+   {
+    "check_id": "CKV_AZURE_70",
+    "finding_label": "Ensure that Function apps is only accessible over HTTPS",
+    "description": "Ensure that Function apps is only accessible over HTTPS",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AZURE_70",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_221",
+    "finding_label": "Ensure that Azure Function App public network access is disabled",
+    "description": "Ensure that Azure Function App public network access is disabled",
+    "severity": "MEDIUM",
+    "category": "other",
+    "remediation_hint": "Fix required for CKV_AZURE_221",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "b6cee433df79de1e",
+  "code": "resource \"azurerm_mysql_server\" \"changeme_simple_mysql_server\" {\n  name                = \"changeme-simple-mysql-database-name\"\n  resource_group_name = azurerm_resource_group.changeme_simple_mysql_server_resource_group.name\n  location            = azurerm_resource_group.changeme_simple_mysql_server_resource_group.location\n  storage_mb = \"5120\"\n  sku_name   = \"B_Gen5_1\"\n  version    = \"8.0\"\n  administrator_login          = \"changemeadmin\"\n  administrator_login_password = \"ch4ng3m3-A@\u00c2\u00a3$%^&\"\n  ssl_enforcement_enabled = true\n}",
+  "code_hash": "c554c5c6cfa59f2de01869aede587bc7",
+  "provider": "azurerm",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 11,
+  "findings": [
+   {
+    "check_id": "CKV_AZURE_96",
+    "finding_label": "Ensure that MySQL server enables infrastructure encryption",
+    "description": "Ensure that MySQL server enables infrastructure encryption",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AZURE_96",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_54",
+    "finding_label": "Ensure MySQL is using the latest version of TLS encryption",
+    "description": "Ensure MySQL is using the latest version of TLS encryption",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AZURE_54",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_94",
+    "finding_label": "Ensure that My SQL server enables geo-redundant backups",
+    "description": "Ensure that My SQL server enables geo-redundant backups",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV_AZURE_94",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_127",
+    "finding_label": "Ensure that My SQL server enables Threat detection policy",
+    "description": "Ensure that My SQL server enables Threat detection policy",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV_AZURE_127",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_53",
+    "finding_label": "Ensure 'public network access enabled' is set to 'False' for mySQL servers",
+    "description": "Ensure 'public network access enabled' is set to 'False' for mySQL servers",
+    "severity": "MEDIUM",
+    "category": "database",
+    "remediation_hint": "Fix required for CKV_AZURE_53",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AZURE_44",
+    "finding_label": "Ensure Azure MySQL server is configured with private endpoint",
+    "description": "Ensure Azure MySQL server is configured with private endpoint",
+    "severity": "MEDIUM",
+    "category": "database",
+    "remediation_hint": "Fix required for CKV2_AZURE_44",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_AZURE_16",
+    "finding_label": "Ensure that MySQL server enables customer-managed key for encryption",
+    "description": "Ensure that MySQL server enables customer-managed key for encryption",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV2_AZURE_16",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "fead5f8873ba8ff1",
+  "code": "resource \"azurerm_mssql_server_security_alert_policy\" \"alertpolicy6\" {\n  resource_group_name        = azurerm_resource_group.example.name\n  server_name                = azurerm_mssql_server.mssql6.name\n  state                      = \"Enabled\"\n  storage_endpoint           = azurerm_storage_account.security_storage_account.primary_blob_endpoint\n  storage_account_access_key = azurerm_storage_account.security_storage_account.primary_access_key\n  disabled_alerts = [\n    \"Sql_Injection\",\n    \"Data_Exfiltration\"\n  ]\n  retention_days  = 20\n  email_addresses = [\"securityengineer@bridgecrew.io\"]\n}",
+  "code_hash": "d7a25ec351e9f45b03d16007acc8d623",
+  "provider": "azurerm",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 13,
+  "findings": [
+   {
+    "check_id": "AVD-AZU-0023",
+    "finding_label": "Security alert policy does not alert account admins.",
+    "description": "Administrators and subscription owners may have a delayed response",
+    "severity": "LOW",
+    "category": "identity-access",
+    "remediation_hint": "Enable email to subscription owners",
+    "reproduced": false
+   },
+   {
+    "check_id": "CKV_AZURE_25",
+    "finding_label": "Ensure that 'Threat Detection types' is set to 'All'",
+    "description": "Ensure that 'Threat Detection types' is set to 'All'",
+    "severity": "MEDIUM",
+    "category": "other",
+    "remediation_hint": "Fix required for CKV_AZURE_25",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_27",
+    "finding_label": "Ensure that 'Email service and co-administrators' is 'Enabled' for MSSQL servers",
+    "description": "Ensure that 'Email service and co-administrators' is 'Enabled' for MSSQL servers",
+    "severity": "MEDIUM",
+    "category": "database",
+    "remediation_hint": "Fix required for CKV_AZURE_27",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "042827b4ce2e9f90",
+  "code": "resource \"azurerm_subnet\" \"data_subnet\" {\n  name                 = \"healthcare-patient-portal-with-hipaa-compliance-subnet-data\"\n  resource_group_name  = azurerm_resource_group.healthcare_portal.name\n  virtual_network_name = azurerm_virtual_network.healthcare_vnet.name\n  address_prefixes     = [\"10.0.3.0/24\"]\n}",
+  "code_hash": "75f6439d6eacfd9eef684b30f767b3e3",
+  "provider": "azurerm",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 6,
+  "findings": [
+   {
+    "check_id": "CKV2_AZURE_31",
+    "finding_label": "Ensure VNET subnet is configured with a Network Security Group (NSG)",
+    "description": "Ensure VNET subnet is configured with a Network Security Group (NSG)",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV2_AZURE_31",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "d1d742a7f3fa77d1",
+  "code": "resource \"azurerm_subnet\" \"private_subnet\" {\n  name                 = \"smart-manufacturing-iot-monitoring-platform-subnet-private\"\n  resource_group_name  = azurerm_resource_group.smart_manufacturing.name\n  virtual_network_name = azurerm_virtual_network.smart_manufacturing_vnet.name\n  address_prefixes     = [\"10.0.2.0/24\"]\n}",
+  "code_hash": "2d7da6ab52703db19193d2a78fec1f9f",
+  "provider": "azurerm",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 6,
+  "findings": [
+   {
+    "check_id": "CKV2_AZURE_31",
+    "finding_label": "Ensure VNET subnet is configured with a Network Security Group (NSG)",
+    "description": "Ensure VNET subnet is configured with a Network Security Group (NSG)",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV2_AZURE_31",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "cc3a08e72fc2ce97",
+  "code": "resource \"azurerm_key_vault_secret\" \"database_connection_string\" {\n  name         = \"database-connection-string\"\n  value        = \"Server=tcp:${azurerm_mssql_server.legal_sql_server.fully_qualified_domain_name},1433;Database=${azurerm_mssql_database.legal_metadata_db.name};User ID=${var.sql_admin_username};Password=${var.sql_admin_password};Encrypt=true;TrustServerCertificate=false;Connection Timeout=30;\"\n  key_vault_id = azurerm_key_vault.legal_keyvault.id\n  depends_on = [azurerm_mssql_database.legal_metadata_db]\n}",
+  "code_hash": "141a491d82667799366e60a8af54a61f",
+  "provider": "azurerm",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 6,
+  "findings": [
+   {
+    "check_id": "CKV_AZURE_41",
+    "finding_label": "Ensure that the expiration date is set on all secrets",
+    "description": "Ensure that the expiration date is set on all secrets",
+    "severity": "MEDIUM",
+    "category": "secrets",
+    "remediation_hint": "Fix required for CKV_AZURE_41",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_114",
+    "finding_label": "Ensure that key vault secrets have \"content_type\" set",
+    "description": "Ensure that key vault secrets have \"content_type\" set",
+    "severity": "MEDIUM",
+    "category": "secrets",
+    "remediation_hint": "Fix required for CKV_AZURE_114",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "109de37ec8b79261",
+  "code": "resource \"azurerm_function_app\" \"changeme_simple_function_app\" {\n  name                       = \"changeme-simple-function-app-name\"\n  location                   = azurerm_resource_group.changeme_simple_function_app_resource_group.location\n  resource_group_name        = azurerm_resource_group.changeme_simple_function_app_resource_group.name\n  app_service_plan_id        = azurerm_app_service_plan.changeme_simple_function_app_app_service_plan.id\n  storage_account_name       = azurerm_storage_account.changeme_simple_function_app_storage_account.name\n  storage_account_access_key = azurerm_storage_account.changeme_simple_function_app_storage_account.primary_access_key\n}",
+  "code_hash": "07a608d3a79a86e9f7bef9eb1c562ccb",
+  "provider": "azurerm",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 8,
+  "findings": [
+   {
+    "check_id": "CKV_AZURE_67",
+    "finding_label": "Ensure that 'HTTP Version' is the latest, if used to run the Function app",
+    "description": "Ensure that 'HTTP Version' is the latest, if used to run the Function app",
+    "severity": "MEDIUM",
+    "category": "container-runtime",
+    "remediation_hint": "Fix required for CKV_AZURE_67",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_70",
+    "finding_label": "Ensure that Function apps is only accessible over HTTPS",
+    "description": "Ensure that Function apps is only accessible over HTTPS",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_AZURE_70",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_56",
+    "finding_label": "Ensure that function apps enables Authentication",
+    "description": "Ensure that function apps enables Authentication",
+    "severity": "MEDIUM",
+    "category": "other",
+    "remediation_hint": "Fix required for CKV_AZURE_56",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "e20e073621c1d3a1",
+  "code": "resource \"azurerm_subnet\" \"changeme_simple_network_interface_subnet\" {\n  name                 = \"changeme-simple-network-interface-subnet-name\"\n  resource_group_name  = azurerm_resource_group.changeme_simple_network_interface_resource_group.name\n  virtual_network_name = azurerm_virtual_network.changeme_simple_network_interface_virtual_network.name\n  address_prefixes     = [\"10.0.1.0/24\"]\n}",
+  "code_hash": "eced6bc768e9667df1aeca835e23c0fe",
+  "provider": "azurerm",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 6,
+  "findings": [
+   {
+    "check_id": "CKV2_AZURE_31",
+    "finding_label": "Ensure VNET subnet is configured with a Network Security Group (NSG)",
+    "description": "Ensure VNET subnet is configured with a Network Security Group (NSG)",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV2_AZURE_31",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "4b721147d8c08e60",
+  "code": "resource \"azurerm_mssql_database\" \"main\" {\n  name           = \"${var.project_name}-database\"\n  server_id      = azurerm_mssql_server.main.id\n  collation      = \"SQL_Latin1_General_CP1_CI_AS\"\n  license_type   = \"LicenseIncluded\"\n  max_size_gb    = 20\n  sku_name       = \"S0\"\n  tags = var.common_tags\n}",
+  "code_hash": "da3b91d1681d8f3b6b6bf6f1c5a4bb76",
+  "provider": "azurerm",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 9,
+  "findings": [
+   {
+    "check_id": "CKV_AZURE_224",
+    "finding_label": "Ensure that the Ledger feature is enabled on database that requires cryptographic proof and nonrepudiation of data integrity",
+    "description": "Ensure that the Ledger feature is enabled on database that requires cryptographic proof and nonrepudiation of data integrity",
+    "severity": "MEDIUM",
+    "category": "database",
+    "remediation_hint": "Fix required for CKV_AZURE_224",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_AZURE_229",
+    "finding_label": "Ensure the Azure SQL Database Namespace is zone redundant",
+    "description": "Ensure the Azure SQL Database Namespace is zone redundant",
+    "severity": "MEDIUM",
+    "category": "database",
+    "remediation_hint": "Fix required for CKV_AZURE_229",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "f41bdf6504a9fca7",
+  "code": "resource \"google_cloudfunctions_function\" \"recovery_testing_service\" {\n  name        = \"enterprise-disaster-recovery-orchestration-platform-function-testing\"\n  description = \"Automated recovery testing service\"\n  runtime     = \"python39\"\n  available_memory_mb   = 256\n  source_archive_bucket = google_storage_bucket.primary_backup_storage.name\n  source_archive_object = google_storage_bucket_object.testing_function_source.name\n  trigger {\n    event_type = \"google.pubsub.topic.publish\"\n    resource   = google_pubsub_topic.recovery_testing_trigger.name\n  }\n  entry_point = \"test_recovery\"\n  environment_variables = {\n    DATABASE_HOST = google_sql_database_instance.recovery_database.ip_address.0.ip_address\n    BACKUP_BUCKET = google_storage_bucket.primary_backup_storage.name\n  }\n  depends_on = [\n    google_storage_bucket.primary_backup_storage,\n    google_sql_database_instance.recovery_database\n  ]\n}",
+  "code_hash": "9ee116edeb0619369b377fc979e88f13",
+  "provider": "google",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 21,
+  "findings": [
+   {
+    "check_id": "CKV_GCP_124",
+    "finding_label": "Ensure GCP Cloud Function is not configured with overly permissive Ingress setting",
+    "description": "Ensure GCP Cloud Function is not configured with overly permissive Ingress setting",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_GCP_124",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "d70ac2a93c49e2f5",
+  "code": "resource \"google_compute_disk\" \"changeme_count_attached_disk_disk\" {\n  name                      = \"changeme-count-attached-disk-disk-${count.index}\"\n  count                     = var.changeme_google_attached_disk_count_number_of_instances\n  type                      = \"pd-ssd\"\n  zone                      = \"us-central1-a\"\n  size                      = 4\n  physical_block_size_bytes = 4096\n}",
+  "code_hash": "13d3720d2adab5b9cd93099764b5ff67",
+  "provider": "google",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 8,
+  "findings": [
+   {
+    "check_id": "CKV_GCP_37",
+    "finding_label": "Ensure VM disks for critical VMs are encrypted with Customer Supplied Encryption Keys (CSEK)",
+    "description": "Ensure VM disks for critical VMs are encrypted with Customer Supplied Encryption Keys (CSEK)",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_GCP_37",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "fdb35e79c79c7ee0",
+  "code": "resource \"google_compute_subnetwork\" \"data_subnet\" {\n  name                     = \"hipaa-compliant-patient-portal-subnet-data\"\n  ip_cidr_range            = \"10.0.3.0/24\"\n  region                   = var.region\n  network                  = google_compute_network.hipaa_vpc.id\n  private_ip_google_access = true\n}",
+  "code_hash": "e65badd4b57010b9f020b26e6c77c864",
+  "provider": "google",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 7,
+  "findings": [
+   {
+    "check_id": "AVD-GCP-0029",
+    "finding_label": "Subnetwork does not have VPC flow logs enabled.",
+    "description": "Limited auditing capability and awareness",
+    "severity": "LOW",
+    "category": "observability-logging",
+    "remediation_hint": "Enable VPC flow logs",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_26",
+    "finding_label": "Ensure that VPC Flow Logs is enabled for every subnet in a VPC Network",
+    "description": "Ensure that VPC Flow Logs is enabled for every subnet in a VPC Network",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_26",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "47b825fa5885008e",
+  "code": "resource \"google_compute_subnetwork\" \"data_subnet\" {\n  name          = \"insurance-claims-processing-platform-subnet-data\"\n  ip_cidr_range = \"10.0.3.0/24\"\n  region        = var.region\n  network       = google_compute_network.claims_vpc.id\n  description   = \"Data subnet for Cloud SQL database\"\n  private_ip_google_access = true\n}",
+  "code_hash": "b399b181a4f6d25effaefc0f911b8a46",
+  "provider": "google",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 8,
+  "findings": [
+   {
+    "check_id": "CKV_GCP_26",
+    "finding_label": "Ensure that VPC Flow Logs is enabled for every subnet in a VPC Network",
+    "description": "Ensure that VPC Flow Logs is enabled for every subnet in a VPC Network",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_26",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "f327a0572fc45df1",
+  "code": "resource \"google_compute_firewall\" \"allow_http\" {\n  name    = \"digital-library-content-management-platform-firewall-http\"\n  network = google_compute_network.digital_library_vpc.name\n  allow {\n    protocol = \"tcp\"\n    ports    = [\"80\", \"443\"]\n  }\n  source_ranges = [\"0.0.0.0/0\"]\n  target_tags   = [\"http-server\"]\n}",
+  "code_hash": "9632aba7ed864dacbae1ee581d934f6b",
+  "provider": "google",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 10,
+  "findings": [
+   {
+    "check_id": "CKV_GCP_106",
+    "finding_label": "Ensure Google compute firewall ingress does not allow unrestricted http port 80 access",
+    "description": "Ensure Google compute firewall ingress does not allow unrestricted http port 80 access",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_GCP_106",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "6bf83113a3d603e1",
+  "code": "resource \"google_project_iam_binding\" \"trading_platform_admin\" {\n  project = var.project_id\n  role    = \"roles/editor\"\n  members = [\n    \"user:trader@${var.organization_domain}\",\n    \"user:admin@${var.organization_domain}\",\n  ]\n}",
+  "code_hash": "1c37626544641d9acd1215619565fee5",
+  "provider": "google",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 8,
+  "findings": [
+   {
+    "check_id": "CKV_GCP_49",
+    "finding_label": "Ensure roles do not impersonate or manage Service Accounts used at project level",
+    "description": "Ensure roles do not impersonate or manage Service Accounts used at project level",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV_GCP_49",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_117",
+    "finding_label": "Ensure basic roles are not used at project level.",
+    "description": "Ensure basic roles are not used at project level.",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV_GCP_117",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "7c3b523dfe0f7a15",
+  "code": "resource \"google_compute_instance\" \"backup_orchestration_engine\" {\n  name         = \"enterprise-disaster-recovery-orchestration-platform-compute-orchestration\"\n  machine_type = \"e2-medium\"\n  zone         = \"${var.primary_region}-a\"\n  boot_disk {\n    initialize_params {\n      image = \"debian-cloud/debian-11\"\n      size  = 50\n    }\n  }\n  network_interface {\n    network    = google_compute_network.dr_vpc.id\n    subnetwork = google_compute_subnetwork.management_subnet.id\n    access_config {}\n  }\n  service_account {\n    email  = \"123456789-compute@developer.gserviceaccount.com\"\n    scopes = [\"cloud-platform\"]\n  }\n  metadata = {\n    serial-port-enable = true\n    startup-script     = file(\"${path.module}/scripts/orchestration-startup.sh\")\n  }\n  tags = [\"dr-internal\", \"orchestration-engine\"]\n  depends_on = [\n    google_storage_bucket.primary_backup_storage,\n    google_sql_database_instance.recovery_database\n  ]\n}",
+  "code_hash": "425328056562dd0c61dd43d5e1dfe520",
+  "provider": "google",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 29,
+  "findings": [
+   {
+    "check_id": "CKV_GCP_38",
+    "finding_label": "Ensure VM disks for critical VMs are encrypted with Customer Supplied Encryption Keys (CSEK)",
+    "description": "Ensure VM disks for critical VMs are encrypted with Customer Supplied Encryption Keys (CSEK)",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_GCP_38",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_30",
+    "finding_label": "Ensure that instances are not configured to use the default service account",
+    "description": "Ensure that instances are not configured to use the default service account",
+    "severity": "MEDIUM",
+    "category": "detection-controls",
+    "remediation_hint": "Fix required for CKV_GCP_30",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_32",
+    "finding_label": "Ensure 'Block Project-wide SSH keys' is enabled for VM instances",
+    "description": "Ensure 'Block Project-wide SSH keys' is enabled for VM instances",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_GCP_32",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_35",
+    "finding_label": "Ensure 'Enable connecting to serial ports' is not enabled for VM Instance",
+    "description": "Ensure 'Enable connecting to serial ports' is not enabled for VM Instance",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_GCP_35",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_39",
+    "finding_label": "Ensure Compute instances are launched with Shielded VM enabled",
+    "description": "Ensure Compute instances are launched with Shielded VM enabled",
+    "severity": "MEDIUM",
+    "category": "detection-controls",
+    "remediation_hint": "Fix required for CKV_GCP_39",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_40",
+    "finding_label": "Ensure that Compute instances do not have public IP addresses",
+    "description": "Ensure that Compute instances do not have public IP addresses",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_GCP_40",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_31",
+    "finding_label": "Ensure that instances are not configured to use the default service account with full access to all Cloud APIs",
+    "description": "Ensure that instances are not configured to use the default service account with full access to all Cloud APIs",
+    "severity": "MEDIUM",
+    "category": "detection-controls",
+    "remediation_hint": "Fix required for CKV_GCP_31",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "7ea6a305ae8c0e2c",
+  "code": "resource \"google_container_cluster\" \"k8sexample\" {\n  name               = \"${var.vault_user}-k8s-cluster\"\n  description        = \"example k8s cluster\"\n  zone               = \"${var.gcp_zone}\"\n  initial_node_count = \"${var.initial_node_count}\"\n  enable_kubernetes_alpha = \"true\"\n  enable_legacy_abac = \"true\"\n  master_auth {\n    username = \"${var.master_username}\"\n    password = \"${var.master_password}\"\n    client_certificate_config {\n      issue_client_certificate = true\n    }\n  }\n  node_config {\n    machine_type = \"${var.node_machine_type}\"\n    disk_size_gb = \"${var.node_disk_size}\"\n    oauth_scopes = [\n      \"https://www.googleapis.com/auth/compute\",\n      \"https://www.googleapis.com/auth/devstorage.read_only\",\n      \"https://www.googleapis.com/auth/logging.write\",\n      \"https://www.googleapis.com/auth/monitoring\"\n    ]\n  }\n}",
+  "code_hash": "1b196ebd1d0db41e0452420119afc811",
+  "provider": "google",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 25,
+  "findings": [
+   {
+    "check_id": "CKV_GCP_66",
+    "finding_label": "Ensure use of Binary Authorization",
+    "description": "Ensure use of Binary Authorization",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV_GCP_66",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_13",
+    "finding_label": "Ensure client certificate authentication to Kubernetes Engine Clusters is disabled",
+    "description": "Ensure client certificate authentication to Kubernetes Engine Clusters is disabled",
+    "severity": "MEDIUM",
+    "category": "other",
+    "remediation_hint": "Fix required for CKV_GCP_13",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_64",
+    "finding_label": "Ensure clusters are created with Private Nodes",
+    "description": "Ensure clusters are created with Private Nodes",
+    "severity": "MEDIUM",
+    "category": "other",
+    "remediation_hint": "Fix required for CKV_GCP_64",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_69",
+    "finding_label": "Ensure the GKE Metadata Server is Enabled",
+    "description": "Ensure the GKE Metadata Server is Enabled",
+    "severity": "MEDIUM",
+    "category": "other",
+    "remediation_hint": "Fix required for CKV_GCP_69",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_70",
+    "finding_label": "Ensure the GKE Release Channel is set",
+    "description": "Ensure the GKE Release Channel is set",
+    "severity": "MEDIUM",
+    "category": "other",
+    "remediation_hint": "Fix required for CKV_GCP_70",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_7",
+    "finding_label": "Ensure Legacy Authorization is set to Disabled on Kubernetes Engine Clusters",
+    "description": "Ensure Legacy Authorization is set to Disabled on Kubernetes Engine Clusters",
+    "severity": "MEDIUM",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV_GCP_7",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_61",
+    "finding_label": "Enable VPC Flow Logs and Intranode Visibility",
+    "description": "Enable VPC Flow Logs and Intranode Visibility",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_61",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_21",
+    "finding_label": "Ensure Kubernetes Clusters are configured with Labels",
+    "description": "Ensure Kubernetes Clusters are configured with Labels",
+    "severity": "MEDIUM",
+    "category": "detection-controls",
+    "remediation_hint": "Fix required for CKV_GCP_21",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_68",
+    "finding_label": "Ensure Secure Boot for Shielded GKE Nodes is Enabled",
+    "description": "Ensure Secure Boot for Shielded GKE Nodes is Enabled",
+    "severity": "MEDIUM",
+    "category": "detection-controls",
+    "remediation_hint": "Fix required for CKV_GCP_68",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_25",
+    "finding_label": "Ensure Kubernetes Cluster is created with Private cluster enabled",
+    "description": "Ensure Kubernetes Cluster is created with Private cluster enabled",
+    "severity": "MEDIUM",
+    "category": "other",
+    "remediation_hint": "Fix required for CKV_GCP_25",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_23",
+    "finding_label": "Ensure Kubernetes Cluster is created with Alias IP ranges enabled",
+    "description": "Ensure Kubernetes Cluster is created with Alias IP ranges enabled",
+    "severity": "MEDIUM",
+    "category": "other",
+    "remediation_hint": "Fix required for CKV_GCP_23",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_65",
+    "finding_label": "Manage Kubernetes RBAC users with Google Groups for GKE",
+    "description": "Manage Kubernetes RBAC users with Google Groups for GKE",
+    "severity": "MEDIUM",
+    "category": "other",
+    "remediation_hint": "Fix required for CKV_GCP_65",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_12",
+    "finding_label": "Ensure Network Policy is enabled on Kubernetes Engine Clusters",
+    "description": "Ensure Network Policy is enabled on Kubernetes Engine Clusters",
+    "severity": "CRITICAL",
+    "category": "identity-access",
+    "remediation_hint": "Fix required for CKV_GCP_12",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_20",
+    "finding_label": "Ensure master authorized networks is set to enabled in GKE clusters",
+    "description": "Ensure master authorized networks is set to enabled in GKE clusters",
+    "severity": "MEDIUM",
+    "category": "other",
+    "remediation_hint": "Fix required for CKV_GCP_20",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_GCP_19",
+    "finding_label": "Ensure GCP Kubernetes engine clusters have 'alpha cluster' feature disabled",
+    "description": "Ensure GCP Kubernetes engine clusters have 'alpha cluster' feature disabled",
+    "severity": "MEDIUM",
+    "category": "other",
+    "remediation_hint": "Fix required for CKV2_GCP_19",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "CRITICAL"
+ },
+ {
+  "file_id": "ab866f2c42bccdfa",
+  "code": "resource \"google_pubsub_topic\" \"notification_trigger\" {\n  name = \"enterprise-disaster-recovery-orchestration-platform-topic-notification\"\n}",
+  "code_hash": "a3c5f5fb0e1dd5aef277751ee9c98296",
+  "provider": "google",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 3,
+  "findings": [
+   {
+    "check_id": "CKV_GCP_83",
+    "finding_label": "Ensure PubSub Topics are encrypted with Customer Supplied Encryption Keys (CSEK)",
+    "description": "Ensure PubSub Topics are encrypted with Customer Supplied Encryption Keys (CSEK)",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_GCP_83",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "33b4d4b8d98ba55f",
+  "code": "resource \"google_sql_database_instance\" \"operational_database\" {\n  name             = \"autonomous-drone-delivery-management-platform-sql-operational\"\n  database_version = \"POSTGRES_14\"\n  region           = var.region\n  settings {\n    tier = var.database_tier\n    ip_configuration {\n      ipv4_enabled = true\n      authorized_networks {\n        value = \"10.0.0.0/16\"\n        name  = \"internal-network\"\n      }\n      authorized_networks {\n        value = \"0.0.0.0/0\"\n        name  = \"internet\"\n      }\n      require_ssl = false\n    }\n    backup_configuration {\n      enabled                        = true\n      start_time                     = \"03:00\"\n      point_in_time_recovery_enabled = true\n    }\n    database_flags {\n      name  = \"log_statement\"\n      value = \"all\"\n    }\n  }\n  deletion_protection = false\n}",
+  "code_hash": "3491ac0c85f1980e6564fa874d9b2fe0",
+  "provider": "google",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 30,
+  "findings": [
+   {
+    "check_id": "CKV_GCP_110",
+    "finding_label": "Ensure pgAudit is enabled for your GCP PostgreSQL database",
+    "description": "Ensure pgAudit is enabled for your GCP PostgreSQL database",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_110",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_109",
+    "finding_label": "Ensure the GCP PostgreSQL database log levels are set to ERROR or lower",
+    "description": "Ensure the GCP PostgreSQL database log levels are set to ERROR or lower",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_109",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_11",
+    "finding_label": "Ensure that Cloud SQL database Instances are not open to the world",
+    "description": "Ensure that Cloud SQL database Instances are not open to the world",
+    "severity": "MEDIUM",
+    "category": "database",
+    "remediation_hint": "Fix required for CKV_GCP_11",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_60",
+    "finding_label": "Ensure Cloud SQL database does not have public IP",
+    "description": "Ensure Cloud SQL database does not have public IP",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_GCP_60",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_52",
+    "finding_label": "Ensure PostgreSQL database 'log_connections' flag is set to 'on'",
+    "description": "Ensure PostgreSQL database 'log_connections' flag is set to 'on'",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_52",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_79",
+    "finding_label": "Ensure SQL database is using latest Major version",
+    "description": "Ensure SQL database is using latest Major version",
+    "severity": "MEDIUM",
+    "category": "container-runtime",
+    "remediation_hint": "Fix required for CKV_GCP_79",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_54",
+    "finding_label": "Ensure PostgreSQL database 'log_lock_waits' flag is set to 'on'",
+    "description": "Ensure PostgreSQL database 'log_lock_waits' flag is set to 'on'",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_54",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_53",
+    "finding_label": "Ensure PostgreSQL database 'log_disconnections' flag is set to 'on'",
+    "description": "Ensure PostgreSQL database 'log_disconnections' flag is set to 'on'",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_53",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_51",
+    "finding_label": "Ensure PostgreSQL database 'log_checkpoints' flag is set to 'on'",
+    "description": "Ensure PostgreSQL database 'log_checkpoints' flag is set to 'on'",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_51",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_6",
+    "finding_label": "Ensure all Cloud SQL database instance requires all incoming connections to use SSL",
+    "description": "Ensure all Cloud SQL database instance requires all incoming connections to use SSL",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_GCP_6",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_108",
+    "finding_label": "Ensure hostnames are logged for GCP PostgreSQL databases",
+    "description": "Ensure hostnames are logged for GCP PostgreSQL databases",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_108",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_GCP_13",
+    "finding_label": "Ensure PostgreSQL database flag 'log_duration' is set to 'on'",
+    "description": "Ensure PostgreSQL database flag 'log_duration' is set to 'on'",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV2_GCP_13",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "855a775072efe7e7",
+  "code": "resource \"google_sql_database_instance\" \"metadata_database\" {\n  name             = \"digital-library-content-management-platform-db-metadata\"\n  database_version = \"POSTGRES_14\"\n  region           = var.region\n  deletion_protection = false\n  settings {\n    tier = \"db-f1-micro\"\n    backup_configuration {\n      enabled = false  # VULNERABILITY: Backup disabled\n    }\n    ip_configuration {\n      ipv4_enabled    = true\n      require_ssl     = false  # VULNERABILITY: SSL not required\n    }\n    database_flags {\n      name  = \"log_lock_waits\"\n      value = \"off\"  # VULNERABILITY: Lock wait logging disabled\n    }\n  }\n}",
+  "code_hash": "55fc9ac19147c9565a3964db414d2254",
+  "provider": "google",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 20,
+  "findings": [
+   {
+    "check_id": "CKV_GCP_110",
+    "finding_label": "Ensure pgAudit is enabled for your GCP PostgreSQL database",
+    "description": "Ensure pgAudit is enabled for your GCP PostgreSQL database",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_110",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_14",
+    "finding_label": "Ensure all Cloud SQL database instance have backup configuration enabled",
+    "description": "Ensure all Cloud SQL database instance have backup configuration enabled",
+    "severity": "MEDIUM",
+    "category": "availability-resilience",
+    "remediation_hint": "Fix required for CKV_GCP_14",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_109",
+    "finding_label": "Ensure the GCP PostgreSQL database log levels are set to ERROR or lower",
+    "description": "Ensure the GCP PostgreSQL database log levels are set to ERROR or lower",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_109",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_60",
+    "finding_label": "Ensure Cloud SQL database does not have public IP",
+    "description": "Ensure Cloud SQL database does not have public IP",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_GCP_60",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_52",
+    "finding_label": "Ensure PostgreSQL database 'log_connections' flag is set to 'on'",
+    "description": "Ensure PostgreSQL database 'log_connections' flag is set to 'on'",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_52",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_79",
+    "finding_label": "Ensure SQL database is using latest Major version",
+    "description": "Ensure SQL database is using latest Major version",
+    "severity": "MEDIUM",
+    "category": "container-runtime",
+    "remediation_hint": "Fix required for CKV_GCP_79",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_54",
+    "finding_label": "Ensure PostgreSQL database 'log_lock_waits' flag is set to 'on'",
+    "description": "Ensure PostgreSQL database 'log_lock_waits' flag is set to 'on'",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_54",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_53",
+    "finding_label": "Ensure PostgreSQL database 'log_disconnections' flag is set to 'on'",
+    "description": "Ensure PostgreSQL database 'log_disconnections' flag is set to 'on'",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_53",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_51",
+    "finding_label": "Ensure PostgreSQL database 'log_checkpoints' flag is set to 'on'",
+    "description": "Ensure PostgreSQL database 'log_checkpoints' flag is set to 'on'",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_51",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_6",
+    "finding_label": "Ensure all Cloud SQL database instance requires all incoming connections to use SSL",
+    "description": "Ensure all Cloud SQL database instance requires all incoming connections to use SSL",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_GCP_6",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_111",
+    "finding_label": "Ensure GCP PostgreSQL logs SQL statements",
+    "description": "Ensure GCP PostgreSQL logs SQL statements",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_111",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_108",
+    "finding_label": "Ensure hostnames are logged for GCP PostgreSQL databases",
+    "description": "Ensure hostnames are logged for GCP PostgreSQL databases",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_108",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_GCP_13",
+    "finding_label": "Ensure PostgreSQL database flag 'log_duration' is set to 'on'",
+    "description": "Ensure PostgreSQL database flag 'log_duration' is set to 'on'",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV2_GCP_13",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "e3a9f45f8565e25e",
+  "code": "resource \"google_pubsub_topic\" \"notification_queue\" {\n  name = \"insurance-claims-processing-platform-pubsub-notifications\"\n  labels = {\n    environment = \"production\"\n    component   = \"notifications\"\n  }\n}",
+  "code_hash": "d719163bf2c9905f4e2691dd144374a2",
+  "provider": "google",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 7,
+  "findings": [
+   {
+    "check_id": "CKV_GCP_83",
+    "finding_label": "Ensure PubSub Topics are encrypted with Customer Supplied Encryption Keys (CSEK)",
+    "description": "Ensure PubSub Topics are encrypted with Customer Supplied Encryption Keys (CSEK)",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_GCP_83",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "acc3c6d682c8376d",
+  "code": "resource \"google_storage_bucket\" \"compliance_storage\" {\n  name     = \"${var.project_id}-digital-asset-trading-platform-compliance\"\n  location = var.region\n  versioning {\n    enabled = true\n  }\n  lifecycle_rule {\n    condition {\n      age = 2555\n    }\n    action {\n      type = \"Delete\"\n    }\n  }\n}",
+  "code_hash": "ece16991e17306d234e3e7ce01cf6462",
+  "provider": "google",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 15,
+  "findings": [
+   {
+    "check_id": "CKV_GCP_62",
+    "finding_label": "Bucket should log access",
+    "description": "Bucket should log access",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_62",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_114",
+    "finding_label": "Ensure public access prevention is enforced on Cloud Storage bucket",
+    "description": "Ensure public access prevention is enforced on Cloud Storage bucket",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_GCP_114",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_29",
+    "finding_label": "Ensure that Cloud Storage buckets have uniform bucket-level access enabled",
+    "description": "Ensure that Cloud Storage buckets have uniform bucket-level access enabled",
+    "severity": "MEDIUM",
+    "category": "storage-data",
+    "remediation_hint": "Fix required for CKV_GCP_29",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "204d24823c397f0f",
+  "code": "resource \"google_compute_firewall\" \"allow_http_https\" {\n  name    = \"digital-asset-trading-platform-firewall-web\"\n  network = google_compute_network.digital_asset_trading_vpc.name\n  allow {\n    protocol = \"tcp\"\n    ports    = [\"80\", \"443\", \"8080\"]\n  }\n  source_ranges = [\"0.0.0.0/0\"]\n  target_tags   = [\"web-server\"]\n}",
+  "code_hash": "9d231024dba24687606a4f8f99676274",
+  "provider": "google",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 10,
+  "findings": [
+   {
+    "check_id": "CKV_GCP_106",
+    "finding_label": "Ensure Google compute firewall ingress does not allow unrestricted http port 80 access",
+    "description": "Ensure Google compute firewall ingress does not allow unrestricted http port 80 access",
+    "severity": "MEDIUM",
+    "category": "network-exposure",
+    "remediation_hint": "Fix required for CKV_GCP_106",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "18d814ff30043688",
+  "code": "resource \"google_cloud_run_service_iam_binding\" \"search_service_public\" {\n  location = google_cloud_run_service.search_service.location\n  project  = google_cloud_run_service.search_service.project\n  service  = google_cloud_run_service.search_service.name\n  role     = \"roles/run.invoker\"\n  members = [\n    \"allUsers\",\n  ]\n}",
+  "code_hash": "0f0a83558f3dc6d4d399ab7a70c3576c",
+  "provider": "google",
+  "label": true,
+  "role": "vulnerability-class-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 9,
+  "findings": [
+   {
+    "check_id": "CKV_GCP_102",
+    "finding_label": "Ensure that GCP Cloud Run services are not anonymously or publicly accessible",
+    "description": "Ensure that GCP Cloud Run services are not anonymously or publicly accessible",
+    "severity": "MEDIUM",
+    "category": "other",
+    "remediation_hint": "Fix required for CKV_GCP_102",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "f95b986e1869c1c1",
+  "code": "resource \"google_sql_database_instance\" \"trading_database\" {\n  name             = \"real-time-financial-trading-platform-database-trading\"\n  database_version = \"POSTGRES_13\"\n  region           = var.region\n  deletion_protection = false\n  settings {\n    tier = \"db-n1-standard-2\"\n    ip_configuration {\n      ipv4_enabled    = false\n      private_network = google_compute_network.trading_platform_vpc.id\n    }\n    database_flags {\n      name  = \"log_connections\"\n      value = \"off\"\n    }\n    backup_configuration {\n      enabled                        = true\n      start_time                     = \"03:00\"\n      point_in_time_recovery_enabled = true\n    }\n  }\n  depends_on = [google_service_networking_connection.private_vpc_connection]\n}",
+  "code_hash": "bd188bdcb7402389ebc415ca65f7cc16",
+  "provider": "google",
+  "label": true,
+  "role": "hardening-finding",
+  "parse_valid": true,
+  "provenance": "unverified-origin",
+  "split": null,
+  "n_lines": 23,
+  "findings": [
+   {
+    "check_id": "CKV_GCP_110",
+    "finding_label": "Ensure pgAudit is enabled for your GCP PostgreSQL database",
+    "description": "Ensure pgAudit is enabled for your GCP PostgreSQL database",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_110",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_109",
+    "finding_label": "Ensure the GCP PostgreSQL database log levels are set to ERROR or lower",
+    "description": "Ensure the GCP PostgreSQL database log levels are set to ERROR or lower",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_109",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_52",
+    "finding_label": "Ensure PostgreSQL database 'log_connections' flag is set to 'on'",
+    "description": "Ensure PostgreSQL database 'log_connections' flag is set to 'on'",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_52",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_79",
+    "finding_label": "Ensure SQL database is using latest Major version",
+    "description": "Ensure SQL database is using latest Major version",
+    "severity": "MEDIUM",
+    "category": "container-runtime",
+    "remediation_hint": "Fix required for CKV_GCP_79",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_54",
+    "finding_label": "Ensure PostgreSQL database 'log_lock_waits' flag is set to 'on'",
+    "description": "Ensure PostgreSQL database 'log_lock_waits' flag is set to 'on'",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_54",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_53",
+    "finding_label": "Ensure PostgreSQL database 'log_disconnections' flag is set to 'on'",
+    "description": "Ensure PostgreSQL database 'log_disconnections' flag is set to 'on'",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_53",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_51",
+    "finding_label": "Ensure PostgreSQL database 'log_checkpoints' flag is set to 'on'",
+    "description": "Ensure PostgreSQL database 'log_checkpoints' flag is set to 'on'",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_51",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_6",
+    "finding_label": "Ensure all Cloud SQL database instance requires all incoming connections to use SSL",
+    "description": "Ensure all Cloud SQL database instance requires all incoming connections to use SSL",
+    "severity": "MEDIUM",
+    "category": "encryption-tls",
+    "remediation_hint": "Fix required for CKV_GCP_6",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_111",
+    "finding_label": "Ensure GCP PostgreSQL logs SQL statements",
+    "description": "Ensure GCP PostgreSQL logs SQL statements",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_111",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV_GCP_108",
+    "finding_label": "Ensure hostnames are logged for GCP PostgreSQL databases",
+    "description": "Ensure hostnames are logged for GCP PostgreSQL databases",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV_GCP_108",
+    "reproduced": true
+   },
+   {
+    "check_id": "CKV2_GCP_13",
+    "finding_label": "Ensure PostgreSQL database flag 'log_duration' is set to 'on'",
+    "description": "Ensure PostgreSQL database flag 'log_duration' is set to 'on'",
+    "severity": "MEDIUM",
+    "category": "observability-logging",
+    "remediation_hint": "Fix required for CKV2_GCP_13",
+    "reproduced": true
+   }
+  ],
+  "eval_sev": "MEDIUM"
+ },
+ {
+  "file_id": "ckv_e46dee5e8651f96d",
+  "code": "resource \"aws_ec2_transit_gateway\" \"pass2\" {\n  description = \"sato\"\n  auto_accept_shared_attachments = \"disable\"\n}\n",
+  "code_hash": "e8d715f26df76aba1ed381ac32d6c63a",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 5,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "ckv_66405baaee7964be",
+  "code": "resource \"google_iam_workload_identity_pool_provider\" \"pass2\" {\n  workload_identity_pool_id          = \"example-pool\"\n  workload_identity_pool_provider_id = \"example-provider-2\"\n  attribute_mapping                 = {\n    \"google.subject\"       = \"assertion.sub\"\n  }\n  attribute_condition               = \"assertion.sub == 'repo:myOrg/myRepo:ref:refs/heads/main'\"\n  oidc {\n    issuer_uri                       = \"https://token.actions.githubusercontent.com\"\n  }\n}\n",
+  "code_hash": "a4102e9a599c0def8a90a4170e18d55a",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 12,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "ckv_aa1ef6430ebcf095",
+  "code": "resource \"kubernetes_ingress\" \"pass\" {\n  metadata {\n    name = \"example-ingress\"\n    namespace = \"brian\"\n  }\n\n  spec {\n    backend {\n      service_name = \"MyApp1\"\n      service_port = 8080\n    }\n\n    rule {\n      http {\n        path {\n          backend {\n            service_name = \"MyApp1\"\n            service_port = 8080\n          }\n\n          path = \"/app1/*\"\n        }\n\n        path {\n          backend {\n            service_name = \"MyApp2\"\n            service_port = 8080\n          }\n\n          path = \"/app2/*\"\n        }\n      }\n    }\n\n    tls {\n      secret_name = \"tls-secret\"\n    }\n  }\n}\n",
+  "code_hash": "d6d7b2bc1783de04898dbc4a5c276cde",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 40,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "ckv_16d5c14162e211b5",
+  "code": "resource \"aws_cognito_identity_pool\" \"pass\" {\n  allow_unauthenticated_identities = false\n}\n",
+  "code_hash": "9d32049a90a81b3df2453a571a5a0ace",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 4,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "kics_a1eff6ae1e5edcdf",
+  "code": "resource \"aws_athena_workgroup\" \"example\" {\n  name = \"example\"\n\n  configuration {\n    enforce_workgroup_configuration    = true\n    publish_cloudwatch_metrics_enabled = true\n\n    result_configuration {\n      output_location = \"s3://${aws_s3_bucket.example.bucket}/output/\"\n\n      encryption_configuration {\n        encryption_option = \"SSE_KMS\"\n        kms_key_arn       = aws_kms_key.example.arn\n      }\n    }\n  }\n}\n",
+  "code_hash": "7a5578fb65787af3b361d63de67722b4",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 18,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "ckv_a148ec55467deafc",
+  "code": "resource \"aws_ami\" \"pass\" {\n  name                = \"terraform-example\"\n  virtualization_type = \"hvm\"\n  root_device_name    = \"/dev/xvda1\"\n\n  ebs_block_device {\n    device_name = \"/dev/xvda1\"\n    volume_size = 8\n    snapshot_id = \"someid\"\n  }\n\n  ebs_block_device {\n    device_name = \"/dev/xvda2\"\n    volume_size = 8\n    encrypted   = true\n  }\n}\n",
+  "code_hash": "176eb8d5d8a07c98bc7365d05212f881",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 18,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "ckv_9c17621fc303cdf4",
+  "code": "resource \"aws_acm_certificate\" \"pass\" {\n  domain_name       = \"example.com\"\n  validation_method = \"DNS\"\n\n  tags = {\n    Environment = \"test\"\n  }\n\n  lifecycle {\n    create_before_destroy = true\n  }\n}\n",
+  "code_hash": "c9b0dd39910e64a1f38b19be690f7012",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 13,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "kics_4f6b9ff1289b9cb4",
+  "code": "provider \"heroku\" {\n  email   = \"ops@company.com\"\n  api_key = var.heroku_api_key\n}\n",
+  "code_hash": "9fdc753e9e467aa6789a85d22ff26f23",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 5,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "kics_7cfd05368f415f7b",
+  "code": "resource \"aws_cloudwatch_log_metric_filter\" \"CIS_AWS_Config_Change_Metric_Filter\" {\n  name           = \"CIS-AWSConfigChanges\"\n  pattern        = \"{ ($.eventSource = \\\"config.amazonaws.com\\\") && (($.eventName=StopConfigurationRecorder)||($.eventName=DeleteDeliveryChannel)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) }\"\n  log_group_name = aws_cloudwatch_log_group.CIS_CloudWatch_LogsGroup.name\n\n  metric_transformation {\n    name      = \"CIS-AWSConfigChanges\"\n    namespace = \"CIS_Metric_Alarm_Namespace\"\n    value     = \"1\"\n  }\n}\nresource \"aws_cloudwatch_metric_alarm\" \"CIS_AWS_Config_Change_CW_Alarm\" {\n  alarm_name                = \"CIS-3.9-AWSConfigChanges\"\n  comparison_operator       = \"GreaterThanOrEqualToThreshold\"\n  evaluation_periods        = \"1\"\n  metric_name               = aws_cloudwatch_log_metric_filter.CIS_AWS_Config_Change_Metric_Filter.id\n  namespace                 = \"CIS_Metric_Alarm_Namespace\"\n  period                    = \"300\"\n  statistic                 = \"Sum\"\n  threshold                 = \"1\"\n  alarm_description         = \"Monitoring changes to AWS Config configuration will help ensure sustained visibility of configuration items within the AWS account.\"\n  alarm_actions             = [aws_sns_topic.CIS_Alerts_SNS_Topic.arn]\n  insufficient_data_actions = []\n}\n",
+  "code_hash": "666fadd89fbfc981f8b093e86adb689e",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 25,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "kics_451083421a7be775",
+  "code": "resource \"azurerm_postgresql_configuration\" \"negative1\" {\n  name                = \"log_retention_days\"\n  resource_group_name = azurerm_resource_group.example.name\n  server_name         = azurerm_postgresql_server.example.name\n  value               = 5\n}",
+  "code_hash": "0985b4a3a82333a3a80ab304854a7a0f",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 6,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "kics_21e58071c91047d4",
+  "code": "resource \"nifcloud_router\" \"negative\" {\n  security_group = nifcloud_security_group.router.group_name\n\n  network_interface {\n    network_id = \"net-COMMON_GLOBAL\"\n  }\n}\n",
+  "code_hash": "24632d11171bee19035e88c020ddcf4d",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 8,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "ckv_0f591b550c10046d",
+  "code": "resource \"aws_batch_job_definition\" \"pass3\" {\n  name = \"tf_test_batch_job_definition\"\n  type = \"container\"\n\n  container_properties = jsonencode({\n    \"command\" : [\"ls\", \"-la\"],\n    \"image\" : \"busybox\",\n    \"memory\" : 1024,\n    \"vcpus\" : 1,\n    \"volumes\" : [\n      {\n        \"host\" : {\n          \"sourcePath\" : \"/tmp\"\n        },\n        \"name\" : \"tmp\"\n      }\n    ],\n    \"environment\" : [\n      { \"name\" : \"VARNAME\", \"value\" : \"VARVAL\" }\n    ],\n    \"mountPoints\" : [\n      {\n        \"sourceVolume\" : \"tmp\",\n        \"containerPath\" : \"/tmp\",\n        \"readOnly\" : false\n      }\n    ],\n    \"ulimits\" : [\n      {\n        \"hardLimit\" : 1024,\n        \"name\" : \"nofile\",\n        \"softLimit\" : 1024\n      }\n    ]\n  })\n}\n",
+  "code_hash": "dd6a76926248d90fccb6d5094c411c67",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 37,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "ckv_7b6ddd4461900a5c",
+  "code": "resource \"aws_lb_target_group\" \"pass\" {\n  name        = \"tf-example-lb-alb-tg\"\n  target_type = \"alb\"\n  port        = 80\n  protocol    = \"TCP\"\n  vpc_id      = aws_vpc.main.id\n}\n",
+  "code_hash": "ad2a3158120f4b796cc042e6c13ca1cd",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 8,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "ckv_8351be637f8592e9",
+  "code": "resource \"kubernetes_service_account_v1\" \"pass\" {\n  metadata {\n    name = \"terraform-example\"\n    namespace=\"brian\"\n  }\n  secret {\n    name = \"${kubernetes_secret_v1.example.metadata.0.name}\"\n  }\n}\n",
+  "code_hash": "2a4ff87cd75e7f51b26e52ab7bb7ddf6",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 10,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "ckv_7c62d551caf30095",
+  "code": "resource \"aws_ssm_document\" \"pass2\" {\n  name          = \"test_document\"\n  document_type = \"Command\"\n\n  content = <<DOC\n  {\n    \"schemaVersion\": \"1.2\",\n    \"description\": \"Check ip configuration of a Linux instance.\",\n    \"parameters\": {\n\n    },\n    \"runtimeConfig\": {\n      \"aws:runShellScript\": {\n        \"properties\": [\n          {\n            \"id\": \"0.aws:runShellScript\",\n            \"runCommand\": [\"ifconfig\"]\n          }\n        ]\n      }\n    }\n  }\nDOC\n  permissions = {\n    type        = \"Share\"\n    account_ids = \"680235478471\"\n  }\n}\n",
+  "code_hash": "43e39d9b17f3ef0974ebf93d2b1470c5",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 29,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "ckv_f8537cffd94fe1a9",
+  "code": "resource \"aws_alb_target_group\" \"pass\" {\n  name     = \"tf-example-lb-nlb-tg\"\n  port     = 25\n  protocol = \"TCP\"\n  vpc_id   = aws_vpc.main.id\n\n  target_health_state {\n    enable_unhealthy_connection_termination = false\n  }\n}\n",
+  "code_hash": "4bc924bd2b06bbe38a54356835fb10bd",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 11,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "ckv_232f40cad491e544",
+  "code": "resource \"panos_management_profile\" \"pass2\" {\n    name = \"my-mgmt-profile\"\n}\n",
+  "code_hash": "3947447117ac02be96c763bbe5737295",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 4,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "ckv_36f33f5b60f2c2f0",
+  "code": "resource \"aws_route53_hosted_zone_dnssec\" \"pass\" {\n  depends_on = [\n    aws_route53_key_signing_key.pass\n  ]\n  hosted_zone_id = aws_route53_key_signing_key.pass.hosted_zone_id\n}\n",
+  "code_hash": "7d981d0a04086197618415f436ed2a37",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 7,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "kics_3a45fc747e9d5a01",
+  "code": "resource \"aws_efs_file_system\" \"negative1\" {\n  creation_token = \"my-product\"\n  encrypted = true\n  kms_key_id = \"1234abcd-12ab-34cd-56ef-1234567890ab\"\n\n  tags = {\n    Name = \"MyProduct\"\n  }\n}",
+  "code_hash": "fc503056e1360af9fa4c090eb5e55329",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 9,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "kics_6e0c02e6412d70a9",
+  "code": "resource \"azurerm_windows_virtual_machine_scale_set\" \"negative4\" {\n  name                 = \"negative4-vmss\"\n  resource_group_name  = azurerm_resource_group.negative4.name\n  location             = azurerm_resource_group.negative4.location\n  sku                  = \"Standard_F2\"\n  computer_name_prefix = \"vm-\"\n\n  encryption_at_host_enabled = true\n}\n",
+  "code_hash": "b72ce24178cee8ffd725dd2e6c8695e7",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 10,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "ckv_b922019111ebd5ab",
+  "code": "resource \"aws_route53_record\" \"pass_apiv2\" {\n  name    = aws_apigatewayv2_domain_name.example.domain_name\n  type    = \"A\"\n  zone_id = aws_route53_zone.example.id\n\n  alias {\n    evaluate_target_health = true\n    name                   = aws_apigatewayv2_domain_name.example.target_domain_name\n    zone_id                = aws_apigatewayv2_domain_name.example.hosted_zone_id\n  }\n}\n",
+  "code_hash": "b8ef46d7ecd16c2afe62a9cfaea80d00",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 12,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "ckv_590bc47c6b83c392",
+  "code": "resource \"google_storage_bucket_iam_member\" \"pass2_member\" {\n  bucket = google_container_registry.pass2.id\n  role = \"roles/storage.objectViewer\"\n  member = \"group:my-group@example.com\"\n}\n",
+  "code_hash": "5025bc20dd89d87fc1b2a4a9c68989bc",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 6,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "kics_d7379e929cbfeb34",
+  "code": "resource \"azurerm_role_definition\" \"example2\" {\n  name        = \"my-custom-role\"\n  scope       = data.azurerm_subscription.primary.id\n  description = \"This is a custom role created via Terraform\"\n\n  permissions {\n    actions     = []\n    not_actions = [\"*\"]\n  }\n\n  assignable_scopes = [\n    data.azurerm_subscription.primary.id, \n  ]\n}\n\nresource \"azurerm_role_assignment\" \"example2\" {\n  name               = \"00000000-0000-0000-0000-000000000000\"\n  scope              = data.azurerm_subscription.primary.id\n  role_definition_name = \"Guest\"\n  role_definition_id = azurerm_role_definition.example2.role_definition_resource_id\n  principal_id       = data.azurerm_client_config.example.object_id\n}\n",
+  "code_hash": "250e0b544d926d8315c7fdf7d2ffa935",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 23,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "ckv_f1481b855746f54f",
+  "code": "resource \"aws_sqs_queue\" \"pass2\" {\n  name                    = \"unencrypted-queue\"\n  sqs_managed_sse_enabled = true\n}\n",
+  "code_hash": "b637770d67e6b647ddaf77f11b5c530e",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 5,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "ckv_fc9a0921ee51cad6",
+  "code": "resource \"aws_redshift_parameter_group\" \"pass\" {\n  name   = var.param_group_name\n  family = \"redshift-1.0\"\n\n  parameter {\n    name  = \"require_ssl\"\n    value = \"true\"\n  }\n\n  parameter {\n    name  = \"enable_user_activity_logging\"\n    value = \"true\"\n  }\n}\n",
+  "code_hash": "d9ca545bcb570e304694c1c2e0b4d73c",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 15,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "ckv_66dc74cdf27fb5ad",
+  "code": "resource \"aws_iam_policy_attachment\" \"pass4\" {\n  name       = \"policy\"\n  role       = aws_iam_role.pass1.name\n  policy_arn = \"arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess\"\n}\n",
+  "code_hash": "ad49668d0596b3078159b5be001190de",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 6,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "kics_c3bba057def7f533",
+  "code": "resource \"azurerm_resource_group\" \"example\" {\n  name     = \"example-resources\"\n  location = \"West Europe\"\n}\n\nresource \"azurerm_network_security_group\" \"example\" {\n  name                = \"acceptanceTestSecurityGroup1\"\n  location            = azurerm_resource_group.example.location\n  resource_group_name = azurerm_resource_group.example.name\n}\n\nresource \"azurerm_network_ddos_protection_plan\" \"example\" {\n  name                = \"ddospplan1\"\n  location            = azurerm_resource_group.example.location\n  resource_group_name = azurerm_resource_group.example.name\n}\n\nresource \"azurerm_virtual_network\" \"negative1\" {\n  name                = \"virtualNetwork1\"\n  location            = azurerm_resource_group.example.location\n  resource_group_name = azurerm_resource_group.example.name\n  address_space       = [\"10.0.0.0/16\"]\n  dns_servers         = [\"10.0.0.4\", \"10.0.0.5\"]\n\n  ddos_protection_plan {\n    id     = azurerm_network_ddos_protection_plan.example.id\n    enable = true\n  }\n\n  subnet {\n    name           = \"subnet1\"\n    address_prefix = \"10.0.1.0/24\"\n  }\n\n  subnet {\n    name           = \"subnet2\"\n    address_prefix = \"10.0.2.0/24\"\n  }\n\n  subnet {\n    name           = \"subnet3\"\n    address_prefix = \"10.0.3.0/24\"\n    security_group = azurerm_network_security_group.example.id\n  }\n\n  tags = {\n    environment = \"Production\"\n  }\n}\n",
+  "code_hash": "d28f94ae1f45abb48f5eebd7963b2cdf",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 50,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "ckv_117c6dfdcf4e1663",
+  "code": "resource \"aws_iam_role\" \"pass1\" {\n  name                = \"pass1\"\n  assume_role_policy  = data.aws_iam_policy_document.instance_assume_role_policy.json\n  managed_policy_arns = [\"arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess\"]\n}\n",
+  "code_hash": "13a581b84fb3b2e9f38c0149a740b343",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 6,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "kics_1dab7090213457a8",
+  "code": "resource \"azurerm_role_assignment\" \"negative8\" {\n  role_definition_id   = \"18d7d88d-d35e-4fb5-a5c3-7773c20a72d9\"\n  scope                = \"/subscriptions/12345678-1234-1234-1234-123456789abc\"\n  principal_id         = data.azurerm_client_config.current.object_id\n  principal_type       = \"ServicePrincipal\"\n  condition_version    = \"2.0\"\n}",
+  "code_hash": "9991eba2e9d7c685d320217249559b90",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 7,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "ckv_30baa6a7ca5c15f5",
+  "code": "resource \"aws_iam_role\" \"pass3\" {\n  name = \"pass3\"\n  assume_role_policy = jsonencode({\n    Version = \"2012-10-17\"\n    Statement = [\n      {\n        Effect = \"Allow\"\n        Principal = {\n          Federated = \"arn:aws:iam::123456123456:oidc-provider/token.actions.githubusercontent.com\"\n        }\n        Action = \"sts:AssumeRoleWithWebIdentity\"\n        Condition = {\n          StringEquals = {\n            \"token.actions.githubusercontent.com:sub\" = \"repo:myOrg/myRepo:ref:refs/heads/MyBranch\"\n            \"token.actions.githubusercontent.com:aud\" = \"sts.amazonaws.com\"\n          }\n        }\n      }\n    ]\n  })\n}\n",
+  "code_hash": "7353625cf7236fef8c94cac2e233f2a4",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "test",
+  "n_lines": 22,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "ckv_b8432e06b283ba88",
+  "code": "resource \"google_bigtable_instance\" \"pass\" {\n  name = \"tf-instance\"\n  deletion_protection = true\n  cluster {\n    cluster_id   = \"tf-instance-cluster\"\n    num_nodes    = 1\n    storage_type = \"HDD\"\n    kms_key_name = google_kms_crypto_key.example.name\n  }\n\n  labels = {\n    my-label = \"prod-label\"\n  }\n}\n",
+  "code_hash": "0f72274c544021ca945e7d760069febc",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "val",
+  "n_lines": 15,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "kics_e560f9a9eb015129",
+  "code": "resource \"azurerm_monitor_activity_log_alert\" \"negative1\" {\n  name                = \"example-activitylogalert\"\n  resource_group_name = azurerm_resource_group.example.name\n  location            = azurerm_resource_group.example.location\n  scopes              = [azurerm_resource_group.example.id]\n  description         = \"Negative sample\"\n\n  criteria {\n    resource_id    = azurerm_storage_account.to_monitor.id\n    operation_name = \"Microsoft.Network/networkSecurityGroups/delete\"\n    category       = \"Administrative\"\n  }\n\n  action {\n    action_group_id = azurerm_monitor_action_group.main.id\n\n    webhook_properties = {\n      from = \"terraform\"\n    }\n  }\n}\n",
+  "code_hash": "8218fb427f85673bba5bebf9a4911264",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "val",
+  "n_lines": 22,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "ckv_ba6b8f7468c82686",
+  "code": "resource \"aws_s3_bucket_policy\" \"pass3\" {\n  bucket = \"bucket\"\n\n  policy = <<POLICY\n        {\n            \"Id\": \"Policy1597273448050\",\n            \"Version\": \"2012-10-17\",\n            \"Statement\": [\n                {\n                    \"Sid\": \"Stmt1597273446725\",\n                    \"Action\": [\n                        \"s3:GetObject\"\n                    ],\n                    \"Resource\": \"arn:aws:s3:::bucket/*\",\n                    \"Principal\": {\n                        \"AWS\": \"some_arn\"\n                    }\n                    \"Effect\": \"Deny\"\n                }\n            ]\n        }\n        POLICY\n}\n",
+  "code_hash": "6d186c140fba6f87bf3ace908d618c97",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "val",
+  "n_lines": 24,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "kics_ad0ceea05d0bc0ba",
+  "code": "resource \"nifcloud_router\" \"negative\" {\n  security_group  = nifcloud_security_group.example.group_name\n\n  network_interface {\n    network_id = nifcloud_private_lan.main.id\n  }\n}\n",
+  "code_hash": "7caab45a048180571917e050c8c775ae",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "val",
+  "n_lines": 8,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "kics_7b9e72ead9576924",
+  "code": "resource \"aws_ecs_task_definition\" \"service\" {\n  family                = \"service\"\n  container_definitions = file(\"task-definitions/service.json\")\n\n  volume {\n    name = \"efs-vol-1\"\n\n    efs_volume_configuration {\n      file_system_id          = aws_efs_file_system.fs1.id\n      root_directory          = \"/opt/data1\"\n      transit_encryption      = \"ENABLED\"\n      transit_encryption_port = 2999\n      authorization_config {\n        access_point_id = aws_efs_access_point.test1.id\n        iam             = \"ENABLED\"\n      }\n    }\n  }\n\n  volume {\n    name = \"efs-vol-2\"\n\n    efs_volume_configuration {\n      file_system_id          = aws_efs_file_system.fs2.id\n      root_directory          = \"/opt/data2\"\n      transit_encryption      = \"ENABLED\"\n      transit_encryption_port = 2999\n      authorization_config {\n        access_point_id = aws_efs_access_point.test2.id\n        iam             = \"ENABLED\"\n      }\n    }\n  }\n}\n\n",
+  "code_hash": "1be39618abe00bd47c72dcebfec451b4",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "val",
+  "n_lines": 36,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ },
+ {
+  "file_id": "kics_5caf57b8a7cf8242",
+  "code": "resource \"google_logging_metric\" \"audit_config_change_1\" {    # checks that extra OR statement is allowed 1\n  name        = \"audit_config_change_1\"\n  description = \"Detects changes to audit configurations via SetIamPolicy\"\n  filter = <<-FILTER\n    resource.type=\"iam_role\"\n    AND (protoPayload.methodName = \"google.iam.admin.v1.CreateRole\" OR\n    protoPayload.methodName=\"google.iam.admin.v1.DeleteRole\" OR\n    protoPayload.methodName=\"google.iam.admin.v1.UpdateRole\" OR\n    protoPayload.methodName=\"google.iam.admin.v1.UndeleteRole\" OR\n    protoPayload.methodName=\"any_other_value\")\n  FILTER\n}\n\nresource \"google_logging_metric\" \"audit_config_change_2\" {      # checks that extra OR statement is allowed 2\n  name        = \"audit_config_change_2\"\n  description = \"Detects changes to audit configurations via SetIamPolicy\"\n  filter = <<-FILTER\n    resource.type=\"iam_role\"\n    AND (protoPayload.methodName = \"google.iam.admin.v1.CreateRole\" OR\n    protoPayload.methodName=\"google.iam.admin.v1.DeleteRole\" OR\n    protoPayload.methodName=\"google.iam.admin.v1.UpdateRole\" OR\n    protoPayload.methodName=\"google.iam.admin.v1.UndeleteRole\") OR\n    protoPayload.methodName=\"any_other_value\"\n  FILTER\n}\n\nresource \"google_logging_metric\" \"audit_config_change_4\" {       # checks that extra OR statement is allowed for resource.type 1\n  name        = \"audit_config_change_4\"\n  description = \"Detects changes to audit configurations via SetIamPolicy\"\n  filter = <<-FILTER\n    resource.type=\"iam_role\" OR resource.type=\"any_other_resource_type\"\n    AND (protoPayload.methodName = \"google.iam.admin.v1.CreateRole\" OR\n    protoPayload.methodName=\"google.iam.admin.v1.UndeleteRole\" OR\n    protoPayload.methodName=\"google.iam.admin.v1.UpdateRole\") OR\n    protoPayload.methodName=\"google.iam.admin.v1.DeleteRole\"\n  FILTER\n}\n\nresource \"google_logging_metric\" \"audit_config_change_5\" {      # checks that extra OR statement is allowed for resource.type 2\n  name        = \"audit_config_change_5\"\n  description = \"Detects changes to audit configurations via SetIamPolicy\"\n  filter = <<-FILTER\n    resource.type= (\"iam_role\" OR \"any_other_resource_type\")\n    AND protoPayload.methodName = (\"google.iam.admin.v1.CreateRole\" OR\n                                   \"google.iam.admin.v1.UndeleteRole\" OR\n                                   \"google.iam.admin.v1.UpdateRole\" OR\n                                   \"google.iam.admin.v1.DeleteRole\")\n  FILTER\n}\n\nresource \"google_logging_metric\" \"audit_config_change_9\" {       # checks that extra OR statement is allowed for resource.type 3\n  name        = \"audit_config_change_9\"\n  description = \"Detects changes to audit configurations via SetIamPolicy\"\n  filter = <<-FILTER\n    resource.type=\"any_other_resource_type\" OR resource.type=\"iam_role\"\n    AND (protoPayload.methodName = \"google.iam.admin.v1.CreateRole\" OR\n    protoPayload.methodName=\"google.iam.admin.v1.UndeleteRole\" OR\n    protoPayload.methodName=\"google.iam.admin.v1.UpdateRole\") OR\n    protoPayload.methodName=\"google.iam.admin.v1.DeleteRole\"\n  FILTER\n}\n\nresource \"google_logging_metric\" \"audit_config_change_10\" {       # checks that extra OR statement is allowed for resource.type 4\n  name        = \"audit_config_change_10\"\n  description = \"Detects changes to audit configurations via SetIamPolicy\"\n  filter = <<-FILTER\n    resource.type= (\"any_other_resource_type\" OR \"iam_role\")\n    AND protoPayload.methodName = (\"google.iam.admin.v1.CreateRole\" OR\n                                   \"google.iam.admin.v1.UndeleteRole\" OR\n                                   \"google.iam.admin.v1.UpdateRole\" OR\n                                   \"google.iam.admin.v1.DeleteRole\")\n  FILTER\n}\n\nresource \"google_logging_metric\" \"audit_config_change_11\" {            # checks that extra OR statement is allowed for resource.type 5\n  name        = \"audit_config_change_11\"\n  description = \"Detects changes to audit configurations via SetIamPolicy\"\n  filter = <<-FILTER\n    resource.type= (\"type_1\" OR \"type_2\" OR \"type_3\" OR  \"type_4\" OR \"iam_role\")\n    AND protoPayload.methodName = (\"google.iam.admin.v1.CreateRole\" OR\n                                   \"google.iam.admin.v1.UndeleteRole\" OR\n                                   \"google.iam.admin.v1.UpdateRole\" OR\n                                   \"google.iam.admin.v1.DeleteRole\")\n  FILTER\n}\n\nresource \"google_logging_metric\" \"audit_config_change_6\" {      # checks many OR statements in a single line\n  name        = \"audit_config_change_6\"\n  description = \"Detects changes to audit configurations via SetIamPolicy\"\n  filter = <<-FILTER\n    resource.type= \"iam_role\"\n    AND protoPayload.methodName = (\"google.iam.admin.v1.CreateRole\" OR \"google.iam.admin.v1.UndeleteRole\" OR \"google.iam.admin.v1.UpdateRole\" OR \"google.iam.admin.v1.DeleteRole\")\n  FILTER\n}\n\nresource \"google_logging_metric\" \"audit_config_change_7\" {      # checks that unrestrictive protoPayload is also valid 1\n  name        = \"audit_config_change_7\"\n  description = \"Detects changes to audit configurations via SetIamPolicy\"\n  filter = <<-FILTER\n    resource.type= (\"iam_role\" OR \"any_other_resource_type\")\n  FILTER\n}\n\nresource \"google_logging_metric\" \"audit_config_change_8\" {      # checks that unrestrictive protoPayload is also valid 2\n  name        = \"audit_config_change_8\"\n  description = \"Detects changes to audit configurations via SetIamPolicy\"\n  filter = <<-FILTER\n    resource.type = \"iam_role\"\n    AND protoPayload.methodName = *\n  FILTER\n}\n\nresource \"google_logging_metric\" \"audit_config_change_15\" {       # checks that extra OR statement is allowed for resource.type 1\n  name        = \"audit_config_change_15\"\n  description = \"Detects changes to audit configurations via SetIamPolicy\"\n  filter = <<-FILTER\n    resource.type=\"iam_role\"\n    AND (protoPayload.methodName = \"google.iam.admin.v1.CreateRole\" OR\n    protoPayload.methodName = \"google.iam.admin.v1.UndeleteRole\" OR\n    protoPayload.methodName = \"google.iam.admin.v1.UpdateRole\") OR\n    protoPayload.any_other_field = \"google.iam.admin.v1.DeleteRole\"\n  FILTER\n}\n\nresource \"google_logging_metric\" \"audit_config_change_12\" {      # checks that unrestrictive protoPayload is also valid 2\n  name        = \"audit_config_change_12\"\n  description = \"Detects changes to audit configurations via SetIamPolicy\"\n  filter = <<-FILTER\n    NOT resource.type != \"iam_role\"\n  FILTER\n}\n\nresource \"google_logging_metric\" \"audit_config_change_13\" {      # checks that unrestrictive protoPayload is also valid 2\n  name        = \"audit_config_change_13\"\n  description = \"Detects changes to audit configurations via SetIamPolicy\"\n  filter = <<-FILTER\n    resource.type != \"any_other_resource_type\" AND resource.type = \"iam_role\"\n  FILTER\n}\n\nresource \"google_logging_metric\" \"audit_config_change_14\" {      # checks that unrestrictive protoPayload is also valid 2\n  name        = \"audit_config_change_14\"\n  description = \"Detects changes to audit configurations via SetIamPolicy\"\n  filter = <<-FILTER\n    resource.type != \"any_other_resource_type\" AND NOT resource.type != \"iam_role\"\n  FILTER\n}\n",
+  "code_hash": "c41a07cede4c60cd0a68cbc1f000bcdd",
+  "provider": "vendor-fixture",
+  "label": false,
+  "role": "verified-clean-negative",
+  "parse_valid": true,
+  "provenance": "verified-clean (vendor fixture)",
+  "split": "val",
+  "n_lines": 148,
+  "findings": [
+   {
+    "check_id": "NONE",
+    "finding_label": "clean fixture (benign by construction, double-scanner verified)",
+    "description": null,
+    "severity": "NONE",
+    "category": "negative",
+    "remediation_hint": null,
+    "reproduced": null
+   }
+  ],
+  "eval_sev": null
+ }
+]

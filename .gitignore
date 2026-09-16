@@ -1,0 +1,30 @@
+# --- secrets: never commit ---
+.env
+
+# --- agent tooling / local-only ---
+.agents/
+
+# --- heavy tooling / downloads (re-obtainable) ---
+tools/
+extracted/
+
+# --- generated render artifacts ---
+paper/_docx/page-*.jpg
+paper/_docx/word_render.pdf
+paper/pages/
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.bbl
+paper/*.blg
+paper/c1.log
+paper/c2.log
+paper/c3.log
+paper/cb.log
+paper/compile1.log
+results/_video/
+results/playground.log
+
+# --- python ---
+__pycache__/
+*.pyc
