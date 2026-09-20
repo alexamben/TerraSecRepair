@@ -71,6 +71,12 @@ def load_client():
     return LLMClient(CACHE)
 
 
+@st.cache_data(show_spinner=False, ttl=3600)
+def load_github(url):
+    from iac_lib import gh_source
+    return gh_source.resolve(url)
+
+
 def run_audit(code, model_key, mode):
     slug, no_reason = MODELS[model_key]
     fid = "playground"
@@ -130,7 +136,8 @@ tab_live, tab_claims = st.tabs(["Live audit (calls the API)", "Claims scoreboard
 with tab_live:
     c1, c2, c3 = st.columns([2, 1, 1])
     with c1:
-        source = st.radio("Terraform source", ["Pick a study test file", "Paste / upload my own"],
+        source = st.radio("Terraform source",
+                          ["Pick a study test file", "Paste / upload my own", "GitHub URL"],
                           horizontal=True)
     with c2:
         model = st.selectbox("Model", list(MODELS), index=3)
@@ -148,6 +155,22 @@ with tab_live:
         pick = st.selectbox("Study test file", list(opts))
         code = opts[pick]["code"]
         label = opts[pick]["file_id"]
+    elif source.startswith("GitHub"):
+        url = st.text_input(
+            "GitHub URL",
+            placeholder="https://github.com/owner/repo  ·  owner/repo@branch  ·  direct .tf URL",
+            help="Public repos need no credentials; private repos use a GITHUB_TOKEN env var. "
+                 "Repos are fetched as a tarball (no git required).")
+        if url:
+            try:
+                with st.spinner("Fetching Terraform files from GitHub ..."):
+                    files = load_github(url)
+                names = [n for n, _ in files]
+                pick = st.selectbox(f"{len(files)} Terraform file(s) found", names)
+                code = dict(files)[pick]
+                label = pick
+            except Exception as e:  # noqa: BLE001
+                st.error(f"GitHub fetch failed: {e}")
     else:
         up = st.file_uploader("Upload .tf", type=["tf"])
         if up is not None:

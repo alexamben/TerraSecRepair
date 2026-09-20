@@ -1,4 +1,4 @@
-name: TerraSecRepair audit
+name: TerraSecRepair
 
 # The merge gate from the paper: audit every changed Terraform file with the
 # hybrid pipeline (Checkov 3.3.17 -> BM25 -> LLM -> validation re-scan) and
@@ -15,6 +15,11 @@ on:
     branches-ignore:
       - main
   workflow_dispatch:
+    inputs:
+      repo_url:
+        description: "Optional GitHub URL to audit instead of this repo's files (repo, repo@branch, or a .tf file URL)"
+        required: false
+        default: ""
 
 jobs:
   audit:
@@ -56,6 +61,14 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
           GH_TOKEN: ${{ github.token }}
         run: |
+          if [ -n "${{ inputs.repo_url }}" ]; then
+            python ci_audit.py \
+              --repo "${{ inputs.repo_url }}" \
+              --model "${TERRASECREPAIR_MODEL:-qwen3.8-flash}" \
+              --mode hybrid \
+              --fail-on high
+            exit $?
+          fi
           if [ -z "${{ steps.files.outputs.files }}" ]; then
             echo "No Terraform files to audit."
             exit 0

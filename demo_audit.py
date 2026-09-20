@@ -3,12 +3,15 @@
 
 Usage (from the code/ folder):
     python demo_audit.py <path\to\file.tf> [--model gpt-5.6-sol] [--mode hybrid]
+    python demo_audit.py https://github.com/owner/repo        (audits every .tf file)
+    python demo_audit.py https://github.com/owner/repo/blob/main/vpc.tf
 
 Modes: baseline | sast | rag | hybrid   (default: hybrid)
 Models: gpt-5.6-sol | gpt-4o | llama-4-maverick | qwen3.8-flash
 
 Prints the findings the model reports, writes the patched file next to the
-input, then validates the patch with the pinned Checkov re-scan:
+input (under patches/ for remote sources), then validates the patch with the
+pinned Checkov re-scan:
   - fix rate       : share of originally-failing checks eliminated
   - new issues     : checks the patch introduced (regressions)
   - parse/preserve : patch parses and keeps all original resources
@@ -16,11 +19,13 @@ input, then validates the patch with the pinned Checkov re-scan:
 import argparse
 import json
 import os
+import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
+from iac_lib import gh_source
 from iac_lib.llm import LLMClient
 from iac_lib.prompts import SYSTEM, build_prompt
 from iac_lib.rag import CardRetriever
@@ -39,7 +44,6 @@ os.makedirs(CACHE, exist_ok=True)
 
 
 def extract_json(content):
-    import re
     content = re.sub(r"```(?:json)?", "", content or "")
     s = content.find("{")
     if s < 0:
@@ -68,24 +72,14 @@ def extract_json(content):
     return None
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("tf_file")
-    ap.add_argument("--model", default="qwen3.8-flash", choices=sorted(MODELS))
-    ap.add_argument("--mode", default="hybrid", choices=CONDITIONS)
-    ap.add_argument("--max-tokens", type=int, default=3500)
-    args = ap.parse_args()
+def audit_one(code, fid, patch_out, model_key, mode, max_tokens):
+    slug, no_reason = MODELS[model_key]
 
-    tf_path = os.path.abspath(args.tf_file)
-    code = open(tf_path, encoding="utf-8").read()
-    fid = os.path.splitext(os.path.basename(tf_path))[0]
-    slug, no_reason = MODELS[args.model]
-
-    print(f"[1/5] SAST stage (Checkov 3.3.17) on {os.path.basename(tf_path)} ...")
+    print(f"[1/5] SAST stage (Checkov 3.3.17) on {fid} ...")
     scan = scan_batch({fid: code}, workers=1)[fid]
     original_failed = set(scan["findings"])
     sast_findings = list(scan["findings"].values())
-    if not sast_findings and args.mode in ("sast", "hybrid"):
+    if not sast_findings and mode in ("sast", "hybrid"):
         print("      scanner reports nothing -> clean file, model skipped (hybrid policy)")
         return
     for f in sast_findings:
@@ -94,18 +88,18 @@ def main():
     print("[2/5] Retrieval over knowledge base ...")
     retr = CardRetriever(os.path.join(ASSETS, "kb_cards.json"), weights=(1.0, 0.0, 0.0))
     cards = None
-    if args.mode in ("rag", "hybrid"):
-        cards = retr.retrieve(summarize_code(code), sast_findings if args.mode == "hybrid" else None,
+    if mode in ("rag", "hybrid"):
+        cards = retr.retrieve(summarize_code(code), sast_findings if mode == "hybrid" else None,
                               top_k=5)
         for c in cards:
             print(f"      card: {c['check_id']}  {c['title'][:55]}")
 
-    print(f"[3/5] LLM call ({slug}, mode={args.mode}) ...")
+    print(f"[3/5] LLM call ({slug}, mode={mode}) ...")
     client = LLMClient(CACHE)
-    user = build_prompt(args.mode, code, sast_findings, cards)
+    user = build_prompt(mode, code, sast_findings, cards)
     rec = client.chat(slug, [{"role": "system", "content": SYSTEM},
                              {"role": "user", "content": user}],
-                      max_tokens=args.max_tokens, temperature=0.0,
+                      max_tokens=max_tokens, temperature=0.0,
                       disable_reasoning=no_reason)
     obj = extract_json(rec["content"])
     if obj is None:
@@ -123,14 +117,12 @@ def main():
     if not patch:
         print("      model returned no patch")
         return
-    out_path = os.path.splitext(tf_path)[0] + f".patched.{args.model}.{args.mode}.tf"
-    with open(out_path, "w", encoding="utf-8", newline="\n") as f:
+    with open(patch_out, "w", encoding="utf-8", newline="\n") as f:
         f.write(patch)
-    print("      wrote", out_path)
+    print("      wrote", patch_out)
 
     print("[5/5] Validation: pinned re-scan of the patch ...")
-    import re as _re
-    pat = _re.compile(r'resource\s+"([^"]+)"\s+"([^"]+)"')
+    pat = re.compile(r'resource\s+"([^"]+)"\s+"([^"]+)"')
     preserved = {(m[0], m[1]) for m in pat.findall(code)}.issubset(
         {(m[0], m[1]) for m in pat.findall(patch)})
     patch_scan = scan_batch({fid: patch}, workers=1)[fid]
@@ -156,6 +148,39 @@ def main():
     print(f"resources preserved  : {preserved}")
     valid = parse_ok and preserved and not new_issues and fix_rate == 1.0
     print(f"VERDICT              : {'✓ VALID FIX' if valid else '✗ NOT A VALID FIX'}")
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("tf_file", help="local .tf file, GitHub repo URL, or direct file URL")
+    ap.add_argument("--model", default="qwen3.8-flash", choices=sorted(MODELS))
+    ap.add_argument("--mode", default="hybrid", choices=CONDITIONS)
+    ap.add_argument("--max-tokens", type=int, default=3500)
+    args = ap.parse_args()
+
+    try:
+        files = gh_source.resolve(args.tf_file)
+    except Exception as e:  # noqa: BLE001
+        print(f"ERROR resolving source: {e}")
+        sys.exit(2)
+
+    remote = not os.path.exists(args.tf_file)
+    if remote:
+        print(f"fetched {len(files)} Terraform file(s) from GitHub")
+        out_dir = os.path.join(HERE, "patches")
+        os.makedirs(out_dir, exist_ok=True)
+
+    for i, (name, code) in enumerate(files, 1):
+        if remote:
+            print(f"\n########## [{i}/{len(files)}] {name} ##########")
+            safe = re.sub(r"[^A-Za-z0-9_.-]+", "_", name)
+            patch_out = os.path.join(out_dir, f"{safe}.patched.{args.model}.{args.mode}.tf")
+            fid = name
+        else:
+            tf_path = os.path.abspath(args.tf_file)
+            patch_out = os.path.splitext(tf_path)[0] + f".patched.{args.model}.{args.mode}.tf"
+            fid = os.path.splitext(os.path.basename(tf_path))[0]
+        audit_one(code, fid, patch_out, args.model, args.mode, args.max_tokens)
 
 
 if __name__ == "__main__":

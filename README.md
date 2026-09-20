@@ -45,7 +45,7 @@ stream it directly in the README.
 ## Quick start
 
 ```bat
-git clone https://github.com/<YOUR-USERNAME>/TerraSecRepair.git
+git clone https://github.com/alexamben/TerraSecRepair.git
 cd TerraSecRepair
 pip install -r requirements.txt
 copy .env.example .env        & rem paste your OpenRouter key
@@ -58,6 +58,23 @@ python -m streamlit run playground_app.py
   validation report.
 - `playground_app.py` opens the interactive playground: pick a file or paste your
   own, choose any model/mode, compare conditions side by side.
+
+## Scan a GitHub repository
+
+Every entry point also accepts a GitHub URL — a whole repository (audits every
+`.tf` file), a subdirectory, or a single file:
+
+```bat
+python demo_audit.py https://github.com/terraform-aws-modules/terraform-aws-s3-bucket
+python demo_audit.py https://github.com/terraform-aws-modules/terraform-aws-s3-bucket/blob/main/main.tf
+python ci_audit.py --repo https://github.com/owner/repo --fail-on high
+```
+
+The playground has the same option (paste a URL instead of a file), and the CI
+workflow can be triggered manually from the Actions tab with a `repo_url` input
+to audit any repository. Public repositories need no credentials; private ones
+are fetched with the `GITHUB_TOKEN` environment variable. Repositories are
+downloaded as a tarball — `git` is not required.
 
 Cost per new audit: **~$0.0003** (Qwen3.8-Flash / Llama-4-Maverick) to
 **~$0.015** (GPT-5.6). Repeated runs are free — responses are cached by prompt
@@ -137,6 +154,3 @@ Local dry run of the exact CI command:
 python ci_audit.py --files examples/insecure_s3_public_access.tf --fail-on high
 ```
 
-## License
-
-[MIT](LICENSE)

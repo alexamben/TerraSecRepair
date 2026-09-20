@@ -3,6 +3,7 @@
 
 Usage (in GitHub Actions, or locally):
     python ci_audit.py --files a.tf b.tf [--model qwen3.8-flash] [--fail-on high]
+    python ci_audit.py --repo https://github.com/owner/repo [--fail-on high]
 
 Writes a markdown report to $GITHUB_STEP_SUMMARY (if set) and to stdout.
 Exit code: 0 = every finding eliminated or below the gate; 1 = unvalidated
@@ -17,6 +18,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
+from iac_lib import gh_source
 from iac_lib.llm import LLMClient, load_key
 from iac_lib.prompts import SYSTEM, build_prompt
 from iac_lib.rag import CardRetriever
@@ -66,13 +68,18 @@ def extract_json(content):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--files", nargs="+", required=True, help=".tf files to audit")
+    ap.add_argument("--files", nargs="+", help=".tf files to audit")
+    ap.add_argument("--repo", default=None,
+                    help="GitHub URL to audit (repo, repo@branch, or a .tf file URL); "
+                         "combined with --files")
     ap.add_argument("--model", default="qwen3.8-flash", choices=sorted(MODELS))
     ap.add_argument("--mode", default="hybrid", choices=["baseline", "sast", "rag", "hybrid"])
     ap.add_argument("--fail-on", default="high",
                     choices=["critical", "high", "medium", "low", "none"],
                     help="gate the merge if unvalidated findings remain at/above this severity")
     args = ap.parse_args()
+    if not args.files and not args.repo:
+        ap.error("nothing to audit: pass --files and/or --repo")
 
     slug, no_reason = MODELS[args.model]
     gate = SEV_ORDER[args.fail_on.upper()] if args.fail_on != "none" else 99
@@ -95,12 +102,22 @@ def main():
                   "merge gate is advisory. Add the secret to enable full remediation.")
         md.append("")
 
-    scan = scan_batch({os.path.abspath(p): open(p, encoding="utf-8").read()
-                       for p in args.files}, workers=min(4, len(args.files)))
+    targets = [(p, open(p, encoding="utf-8").read()) for p in (args.files or [])]
+    if args.repo:
+        try:
+            targets.extend(gh_source.resolve(args.repo))
+        except Exception as e:  # noqa: BLE001
+            print(f"ERROR fetching {args.repo}: {e}")
+            sys.exit(2)
+    if not targets:
+        print("nothing to audit (no local files, no .tf files in repo)")
+        sys.exit(0)
 
-    for path in args.files:
-        code = open(path, encoding="utf-8").read()
-        res = scan[os.path.abspath(path)]
+    scan = scan_batch({name: code for name, code in targets},
+                      workers=min(4, len(targets)))
+
+    for path, code in targets:
+        res = scan[path]
         targets = set(res["findings"])
         sast_f = list(res["findings"].values())
         md.append(f"### `{path}` — {len(targets)} candidate findings")
