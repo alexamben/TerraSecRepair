@@ -15,7 +15,7 @@ Security Analysis and Remediation**
 
 ![Architecture](docs/architecture.png)
 
-[![Demo](https://img.shields.io/badge/▶_Watch-the%20demo-C53030)](https://github.com/user-attachments/assets/2be973a4-1538-438c-a2aa-96c3b2998344)
+[![Demo](https://img.shields.io/badge/▶_Watch-the%20demo-C53030)](https://github.com/user-attachments/assets/8ad65915-6e46-440e-876c-7c79dcfe36cd)
 
 </div>
 
