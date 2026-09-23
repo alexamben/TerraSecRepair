@@ -36,11 +36,6 @@ the model instead:
 
 > The green/red verdict is decided by the re-scan, not by the model.
 
-## Demo
-
-A recorded playground session is included at [`docs/demo.mp4`](docs/demo.mp4) —
-play it locally, or upload it once to a GitHub release and swap the link to
-stream it directly in the README.
 
 ## Quick start
 
