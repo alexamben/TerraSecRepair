@@ -156,11 +156,13 @@ with tab_live:
         code = opts[pick]["code"]
         label = opts[pick]["file_id"]
     elif source.startswith("GitHub"):
-        url = st.text_input(
-            "GitHub URL",
-            placeholder="https://github.com/owner/repo  ·  owner/repo@branch  ·  direct .tf URL",
-            help="Public repos need no credentials; private repos use a GITHUB_TOKEN env var. "
-                 "Repos are fetched as a tarball (no git required).")
+        with st.form("gh_form"):
+            url = st.text_input(
+                "GitHub URL",
+                placeholder="https://github.com/owner/repo  ·  owner/repo@branch  ·  direct .tf URL",
+                help="Public repos need no credentials; private repos use a GITHUB_TOKEN env var. "
+                     "Repos are fetched as a tarball (no git required).")
+            st.form_submit_button("Fetch files")
         if url:
             try:
                 with st.spinner("Fetching Terraform files from GitHub ..."):
