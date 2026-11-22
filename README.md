@@ -149,3 +149,18 @@ Local dry run of the exact CI command:
 python ci_audit.py --files examples/insecure_s3_public_access.tf --fail-on high
 ```
 
+
+
+## Reproducing the study
+
+The `evaluation/` folder holds the study harness and every result JSON:
+`run_experiments.py` (grid), `evaluate.py` (scoring), `stats.py` (paired tests),
+`check_retrieval.py` (retrieval recall). `evaluation/results/` contains the seeded
+106-file split, the SAST outputs, per-run records (`eval_runs.json`), and the
+per-cell raw responses; `evaluation/prompt_response_archive/` holds the 1,408
+distinct prompt-keyed responses. With no API key set, the harness replays the
+archived responses exactly:
+
+    pip install -r requirements-lock.txt
+    python evaluation/evaluate.py
+    python evaluation/stats.py

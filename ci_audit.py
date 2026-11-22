@@ -23,6 +23,7 @@ from iac_lib.llm import LLMClient, load_key
 from iac_lib.prompts import SYSTEM, build_prompt
 from iac_lib.rag import CardRetriever
 from iac_lib.sast import scan_batch, summarize_code
+from iac_lib.validate import has_suppression
 
 ASSETS = os.path.join(HERE, "assets")
 CACHE = os.path.join(HERE, "cache")
@@ -146,6 +147,11 @@ def main():
         patch = (obj or {}).get("patched_code") or ""
         cost = (rec.get("usage") or {}).get("cost", 0.0)
 
+        if patch and has_suppression(patch):
+            # a patch that mutes the scanner instead of fixing the code is not a fix
+            md.append(f"- ❗ patch rejected: contains a scanner suppression comment "
+                      f"(checkov:skip / trivy:ignore)")
+            patch = ""
         if patch:
             patch_scan = scan_batch({path + ".patched": patch}, workers=1)[path + ".patched"]
             patch_failed = set(patch_scan["findings"])

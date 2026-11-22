@@ -19,6 +19,7 @@ from iac_lib.llm import LLMClient
 from iac_lib.prompts import SYSTEM, build_prompt
 from iac_lib.rag import CardRetriever
 from iac_lib.sast import scan_batch, summarize_code
+from iac_lib.validate import has_suppression, resources_preserved
 
 RES = os.path.join(HERE, "assets")
 CACHE = os.path.join(HERE, "cache")
@@ -99,6 +100,7 @@ def run_audit(code, model_key, mode):
 
     original_failed = set(scan["findings"])
     eliminated, new_issues, parse_ok = set(), set(), None
+    suppressed = has_suppression(patch)
     if patch:
         try:
             import hcl2
@@ -111,16 +113,16 @@ def run_audit(code, model_key, mode):
         eliminated = original_failed - patch_failed
         new_issues = patch_failed - original_failed
     fix_rate = (len(eliminated) / len(original_failed)) if original_failed else 1.0
-    pat = re.compile(r'resource\s+"([^"]+)"\s+"([^"]+)"')
-    preserved = ({(m[0], m[1]) for m in pat.findall(code)}
-                 .issubset({(m[0], m[1]) for m in pat.findall(patch)}))
-    valid = bool(parse_ok) and preserved and not new_issues and original_failed and fix_rate == 1.0
+    preserved = resources_preserved(code, patch) if patch else False
+    valid = (bool(parse_ok) and preserved and not new_issues
+             and original_failed and fix_rate == 1.0 and not suppressed)
     return {
         "sast": sast_f, "cards": cards or [], "findings": findings, "patch": patch,
         "cost": (rec.get("usage") or {}).get("cost", 0.0), "latency": rec["latency_s"],
         "fix_rate": fix_rate, "new_issues": sorted(new_issues),
         "eliminated": len(eliminated), "n_targets": len(original_failed),
-        "parse_ok": parse_ok, "preserved": preserved, "valid": valid,
+        "parse_ok": parse_ok, "preserved": preserved, "suppressed": suppressed,
+        "valid": valid,
     }
 
 

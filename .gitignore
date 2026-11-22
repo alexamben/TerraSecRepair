@@ -22,8 +22,8 @@ paper/c2.log
 paper/c3.log
 paper/cb.log
 paper/compile1.log
-results/_video/
-results/playground.log
+results_old/_video/
+results_old/playground.log
 
 # --- python ---
 __pycache__/

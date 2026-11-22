@@ -1,0 +1,66 @@
+{
+ "gpt-5.6-sol/sast": {
+  "cand_true": 178,
+  "cand_noise": 2,
+  "kept_true": 146,
+  "kept_noise": 0,
+  "dropped_true": 32,
+  "dropped_noise": 2
+ },
+ "gpt-5.6-sol/hybrid": {
+  "cand_true": 191,
+  "cand_noise": 2,
+  "kept_true": 157,
+  "kept_noise": 0,
+  "dropped_true": 34,
+  "dropped_noise": 2
+ },
+ "gpt-4o/sast": {
+  "cand_true": 271,
+  "cand_noise": 2,
+  "kept_true": 184,
+  "kept_noise": 0,
+  "dropped_true": 87,
+  "dropped_noise": 2
+ },
+ "gpt-4o/hybrid": {
+  "cand_true": 271,
+  "cand_noise": 2,
+  "kept_true": 191,
+  "kept_noise": 0,
+  "dropped_true": 80,
+  "dropped_noise": 2
+ },
+ "llama-4-maverick/sast": {
+  "cand_true": 251,
+  "cand_noise": 2,
+  "kept_true": 144,
+  "kept_noise": 0,
+  "dropped_true": 107,
+  "dropped_noise": 2
+ },
+ "llama-4-maverick/hybrid": {
+  "cand_true": 270,
+  "cand_noise": 2,
+  "kept_true": 139,
+  "kept_noise": 0,
+  "dropped_true": 131,
+  "dropped_noise": 2
+ },
+ "qwen3.8-flash/sast": {
+  "cand_true": 271,
+  "cand_noise": 2,
+  "kept_true": 156,
+  "kept_noise": 0,
+  "dropped_true": 115,
+  "dropped_noise": 2
+ },
+ "qwen3.8-flash/hybrid": {
+  "cand_true": 271,
+  "cand_noise": 2,
+  "kept_true": 173,
+  "kept_noise": 0,
+  "dropped_true": 98,
+  "dropped_noise": 2
+ }
+}

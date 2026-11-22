@@ -1,0 +1,24 @@
+{
+ "total_rows": 5797,
+ "total_files": 2393,
+ "unique_code_hashes": 2393,
+ "vuln_pool": 961,
+ "clean_pool": 804,
+ "n_test": 106,
+ "n_vuln": 70,
+ "n_clean": 36,
+ "provider_counts_test": {
+  "aws": 38,
+  "azurerm": 16,
+  "google": 16,
+  "vendor-fixture": 36
+ },
+ "severity_counts_vuln_test": {
+  "HIGH": 16,
+  "MEDIUM": 50,
+  "CRITICAL": 4
+ },
+ "n_lines_median": 9.0,
+ "kb_cards": 595,
+ "seed": 42
+}
