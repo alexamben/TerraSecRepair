@@ -242,10 +242,14 @@ with tab_claims:
     st.success("HOLDS for all four models" if all(r["holds"] for r in rows) else "CHECK: fails for a model")
 
     st.markdown("**Claim 2 — Hybrid converts more findings into scanner-validated fixes:**")
+    # over ALL 70 vulnerable files (Table 4 primary denominator)
     rows = []
     for m in MODELS_ORDER:
-        b, h = M[f"{m}/baseline"]["valid_fix_rate"], M[f"{m}/hybrid"]["valid_fix_rate"]
-        rows.append({"model": m, "baseline valid-fix": f"{b:.1%}", "hybrid valid-fix": f"{h:.1%}",
+        b = M[f"{m}/baseline"]["n_valid_fix"]
+        h = M[f"{m}/hybrid"]["n_valid_fix"]
+        rows.append({"model": m,
+                     "baseline valid-fix": f"{b}/70 ({b / 70:.1%})",
+                     "hybrid valid-fix": f"{h}/70 ({h / 70:.1%})",
                      "holds": h > b})
     st.dataframe(rows, use_container_width=True)
     st.success("HOLDS for all four models" if all(r["holds"] for r in rows) else "CHECK")

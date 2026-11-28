@@ -110,9 +110,9 @@ this version.
 | Metric | LLM only | Full hybrid |
 |---|---|---|
 | Finding-level F1 (best model) | 0.38 | **0.85** |
-| Valid-fix rate (best model) | 36% | **61%** |
-| False alarms on clean files | 31–61% | **6–39%** |
-| Full 4×4×106 study cost | — | **$7.91** |
+| Valid-fix rate over all 70 vulnerable files (best model) | 34% | **53%** |
+| False alarms on clean files | 30.6–61.1% | **5.6–38.9%** |
+| Full 4×4×106 study cost (billed once per distinct prompt) | — | **$7.07** |
 
 *Full methodology, ablations, and statistics in the accompanying manuscript.*
 
